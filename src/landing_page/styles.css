@@ -1,0 +1,17 @@
+.accountDescription {
+    font-size: 20px;
+    color: #424242;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.accountButton {
+    padding: 10px 30px;
+    background-color: #387ed1;
+    color: white;
+    margin-bottom: 120px;
+}
+
+.accountHeading {
+    color: #424242;
+}
