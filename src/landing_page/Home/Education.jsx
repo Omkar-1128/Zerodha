@@ -7,7 +7,7 @@ function Education() {
             <div className="container">
                 <div className="row justify-content-evenly align-items-center EducationContainer">
                     <div className="col-md-4">
-                        <img className='EducationImage' src="/Media/images/education.svg" alt="" />
+                        <img className='EducationImage' src="/Media/images/education.svg" alt="education image" />
                     </div>
                     <div className="col-md-5">
                         <div className='PricingContent'>
