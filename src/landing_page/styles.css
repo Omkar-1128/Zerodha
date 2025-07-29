@@ -64,6 +64,10 @@
     margin-bottom: 12px;
 }
 
+.col a:hover {
+    color: #387ed1;
+}
+
 .col p {
     font-size: 18px;
     color: #666666;
@@ -101,4 +105,19 @@
     text-decoration: none;
     color: #9B9B9B;
     font-size: 12PX;
+}
+
+.footer-bottom-links a:hover {
+    color: #387ed1;
+}
+
+.pageNotFound {
+  color: #424242;
+  text-align: center;
+  padding: 260px;
+}
+
+.pageNotFoundLink {
+    text-decoration: none;
+    color: #387ed1;
 }

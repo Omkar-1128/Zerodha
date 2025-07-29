@@ -12,14 +12,14 @@ import './Home.css'
 function HomePage() {
     return ( 
         <>
-            <Navbar /> 
+            {/* <Navbar />  */}
             <Hero />
             <Stats />
             <Awards />
             <Pricing />
             <Education />
             <Openaccount heading={"Open a Zerodha account"} description={"Modern platforms and apps, ₹0 investments, and flat ₹20 intraday and F&O trades."}/>
-            <Footer />
+            {/* <Footer /> */}
         </>
      );
 }
