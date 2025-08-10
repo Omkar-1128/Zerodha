@@ -1,0 +1,47 @@
+.Hero {
+    margin-top: 100.5px;
+    margin-bottom: 100px;
+}
+
+.Hero h2 {
+    color: #424242;
+}
+
+.LeftSection {
+    margin-top: 80px;
+}
+
+.LeftSectionContent h3{
+    margin-bottom: 30px;
+}
+
+.LeftSectionContent p{
+    line-height: 30px;
+}
+
+.universeHero h3 {
+    color: #424242;
+    margin-bottom: 20px;
+}
+
+.universeHero p{
+    margin: 15px 0;
+}
+
+.productImage:hover {
+    opacity: 0.8;
+}
+
+.universeContent {
+    font-size: 12px;
+}
+
+.universeHero {
+    margin-top: 80px;
+}
+
+.accountButton {
+    padding: 10px 30px;
+    background-color: #387ed1;
+    color: white;
+}

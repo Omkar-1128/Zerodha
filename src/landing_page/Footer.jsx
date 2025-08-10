@@ -177,16 +177,33 @@ function Footer() {
             </p>
           </div>
           <div className="footer-bottom-div">
-            <p className="footer-bottom-links"><a href="#" >NSE</a>  </p>
-            <p className="footer-bottom-links"><a href="#" >BSE</a></p>
-            <p className="footer-bottom-links"><a href="#" >MCX</a> </p>
-            <p className="footer-bottom-links"><a href="#" >Terms & conditions</a></p>
-            <p className="footer-bottom-links"><a href="#" >Policies & procedures</a></p>
-            <p className="footer-bottom-links"><a href="#" >Privacy policy</a></p>
-            <p className="footer-bottom-links"><a href="#" >Disclosure</a> </p>
-            <p className="footer-bottom-links"><a href="#" >For investor's attention</a> </p>
-            <p className="footer-bottom-links"><a href="#" >Investor charter </a></p>
-                 
+            <p className="footer-bottom-links">
+              <a href="#">NSE</a>{" "}
+            </p>
+            <p className="footer-bottom-links">
+              <a href="#">BSE</a>
+            </p>
+            <p className="footer-bottom-links">
+              <a href="#">MCX</a>{" "}
+            </p>
+            <p className="footer-bottom-links">
+              <a href="#">Terms & conditions</a>
+            </p>
+            <p className="footer-bottom-links">
+              <a href="#">Policies & procedures</a>
+            </p>
+            <p className="footer-bottom-links">
+              <a href="#">Privacy policy</a>
+            </p>
+            <p className="footer-bottom-links">
+              <a href="#">Disclosure</a>{" "}
+            </p>
+            <p className="footer-bottom-links">
+              <a href="#">For investor's attention</a>{" "}
+            </p>
+            <p className="footer-bottom-links">
+              <a href="#">Investor charter </a>
+            </p>
           </div>
         </div>
       </footer>
