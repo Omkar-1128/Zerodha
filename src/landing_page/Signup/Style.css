@@ -1,0 +1,134 @@
+.HeroInfo {
+    padding-top: 100px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.HeroInfo h2 {
+    color: #424242;
+}
+
+.HeroInfo p {
+    font-size: 20px;
+    color: #666666;
+}
+
+.MobileInput {
+    padding-left: 20px;
+}
+
+.accountDescription {
+    font-size: 20px;
+    color: #424242;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.accountButton {
+    padding: 10px 30px;
+    background-color: #387ed1;
+    color: white;
+    margin-bottom: 10px;
+    padding-left: 65px;
+    padding-right: 65px;
+}
+
+.accountHeading {
+    color: #424242;
+    margin-top: 20px;
+}
+
+.MobileInput {
+    width: 400px;
+    height: 57px;
+    border: 1px solid rgb(222, 226, 230);
+    border-radius: 0.5rem;
+}
+
+.row {
+    padding-top: 20px;
+}
+
+.Investment-Heading {
+    text-align: center;
+    padding-top: 100px;
+    margin-bottom: 50px;
+    color: #424242;
+}
+
+.investment-info h4{
+    color: #424242;
+}
+
+.investment-info p {
+    color: #666666;
+}
+
+.exploreButton {
+    padding: 10px 30px;
+    background-color: #387ed1;
+    color: white;
+    margin-bottom: 80px;
+    border-radius: 0.3rem;
+    text-align: center;
+    border: none;
+}
+
+.Benefits-image {
+    height: 234px;
+    width: 350px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.Benefits-image-h h4 {
+    color: #424242;
+    padding-bottom: 120px;
+}
+
+.Benefits-image-h{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.Benefits-h-p h5{
+    color: #424242;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+.Benefits-h-p p {
+    color: #666666;
+    margin-top: 16px;
+    margin-bottom: 15px;
+}
+
+.ExploreCards {
+    border: 1px solid rgb(225, 225, 225);
+    padding: 25px;
+    border-radius: 0.5rem;
+    margin-left: 15px;
+    margin-bottom: 30px;
+}
+
+.ExploreCards:hover {
+    border-color: #387ed1;
+}
+
+.ExploreCards p {
+    font-size: 16px;
+    color: #666666;
+}
+
+.ExploreCards h4{
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #444444;
+}
+
+.Explore-heading {
+    color:#424242;
+    margin-bottom: 50px;
+    margin-top: 100px;
+}

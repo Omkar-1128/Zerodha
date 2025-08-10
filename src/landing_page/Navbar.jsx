@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-border">
+      <nav className="navbar navbar-expand-lg navbar-border">
         <div className="container">
           <Link to="/">
             <img
@@ -17,27 +17,47 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/Signup">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/Signup"
+                >
                   Signup
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/About">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/About"
+                >
                   About
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/Products">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/Products"
+                >
                   Products
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/Pricing">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/Pricing"
+                >
                   Pricing
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/Pricing">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/Support"
+                >
                   Support
                 </Link>
               </li>
