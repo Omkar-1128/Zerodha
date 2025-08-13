@@ -1,0 +1,95 @@
+.HeroImg {
+    width: 799.8px;
+    height: 335.6px;
+}
+
+.HeroContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px !important;
+    margin-top: 73px !important;
+}
+
+.EcosystemImage {
+    height: 611.2px;
+    width: 622.45px;
+    
+}
+
+.StatsText h3{
+    margin-bottom: 40px;
+}
+
+.StatsContainer {
+    color: #424242;
+}
+
+.StatsContent p {
+    margin-top: 5px;
+    margin-bottom: 32px;
+}
+
+.StatsContentLinks {
+    text-decoration: none;
+    color: #387ed1;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.EcosystemLinks {
+    margin-top: 16px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.EcosystemLinks a {
+    text-decoration: none;
+    color: #387ed1;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.PressLogos {
+    margin-top: 60px;
+    margin-bottom: 120px;
+}
+
+.PricingContent p{
+    margin-top: 16px;
+    margin-bottom: 15px;
+}
+
+.PricingContent {
+    color: #424242;
+}
+
+.PricingContent a {
+    text-decoration: none;
+    color: #387ed1;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.PricingRupee {
+    font-size: 65px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    text-align: center;
+    color: #DCA857;
+}
+
+.PricingContainer {
+    padding-bottom: 120px;
+}
+
+.EducationImage {
+    height: auto;
+    width: 100%;
+}
+
+.EducationContainer {
+    padding-bottom: 100px;
+    align-items: center;
+}
