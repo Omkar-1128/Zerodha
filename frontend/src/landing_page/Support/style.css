@@ -1,0 +1,116 @@
+.ticketButton {
+    background-color: #387ed1;
+    color: white;
+    padding: 8px 17px;
+    border: 1px solid #387ed1;
+    border-radius: 0.3rem;
+}
+
+.ticketButton:hover {
+    background-color: rgb(30, 29, 29);
+    border: 1px solid rgb(30, 29, 29);
+}
+
+.ticketContainer {
+    background-color: #f6f6f6;
+    padding: 40px 24px;
+    border: 1px solid lightgray;
+}
+
+h2 {
+    color: #424242;
+    padding-bottom: 12px;
+}
+
+.SearchBar {
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid rgb(222, 222, 227) !important;
+    border-bottom: 1px solid rgb(222, 222, 227) !important;
+    border-right: 1px solid rgb(222, 222, 227) !important;
+}
+
+.SearchBar:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.input-group-text {
+    border: 1px solid rgb(222, 222, 227) !important;
+}
+
+.accordion-button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.accordion-button {
+    height: 60px;
+}
+
+.accordion-item {
+     transition: transform 0.5s ease;
+}
+
+.accordion-item:hover {
+     transform: scale(1.03);
+}
+
+.accordion-header {
+    padding-bottom: 0px !important;
+}
+
+.HeadingSection {
+     font-size: 18px !important;
+    font-weight: 600 !important;
+    color: #424242 !important;
+}
+
+.accordion {
+    padding-top: 28px;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  color: inherit; /* keeps original text color */
+}
+
+.anchorList {
+    text-decoration:none;
+    line-height:2.5 ;
+    color:rgb(13, 110, 253);
+}
+
+.anchorList:hover {
+    color: #424242;
+}
+
+.accordion-body {
+    padding-top: 0px;
+}
+
+.AccountCharges th{
+    text-align: left;
+    background-color: rgb(246, 246, 246);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.AccountCharges td {
+    text-align: left;
+    font-size: 16px;
+}
+
+.QuickLinks {
+    background-color: #FFFACD;
+    width: 90%;
+    margin-left: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 0.5px solid #FFE34D;
+}
+
+.QuickLinks li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+}
