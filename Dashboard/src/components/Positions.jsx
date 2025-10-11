@@ -5,35 +5,42 @@ const Positions = () => {
   return (
     <>
       <h3 className="title">Positions (2)</h3>
-
       <div className="order-table">
         <table>
-          <tr>
-            <th>Product</th>
-            <th>Instrument</th>
-            <th>Qty.</th>
-            <th>Avg.</th>
-            <th>LTP</th>
-            <th>P&L</th>
-            <th>Chg.</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Instrument</th>
+              <th>Qty.</th>
+              <th>Avg.</th>
+              <th>LTP</th>
+              <th>P&L</th>
+              <th>Chg.</th>
+            </tr>
+          </thead>
 
-          {positions.map(function (position) {
+          {positions.map(function (position, idx) {
             const currValue = position.price * position.qty;
             const isProfit = currValue - position.avg * position.qty >= 0.0;
-            const profClass = isProfit? "profit" : "loss";
-            const dayClass = position.isLoss? "loss" : "profit";
+            const profClass = isProfit ? "profit" : "loss";
+            const dayClass = position.isLoss ? "loss" : "profit";
             return (
-              <tr>
-                <td>{position.product}</td>
-                <td>{position.name}</td>
-                <td>{position.qty}</td>
-                <td>{position.avg}</td>
-                <td>{position.price}</td>
-                <td className={profClass}>{((position.price - position.avg) * position.qty).toFixed(2)}</td>
-                <td className={dayClass}>{position.day}</td>
-                <td></td>
-              </tr>
+              <tbody key={idx}>
+                <tr>
+                  <td>{position.product}</td>
+                  <td>{position.name}</td>
+                  <td>{position.qty}</td>
+                  <td>{position.avg}</td>
+                  <td>{position.price}</td>
+                  <td className={profClass}>
+                    {((position.price - position.avg) * position.qty).toFixed(
+                      2
+                    )}
+                  </td>
+                  <td className={dayClass}>{position.day}</td>
+                  <td></td>
+                </tr>
+              </tbody>
             );
           })}
 

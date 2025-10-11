@@ -9,34 +9,40 @@ const Holdings = () => {
 
       <div className="order-table">
         <table>
-          <tr>
-            <th>Instrument</th>
-            <th>Qty.</th>
-            <th>Avg. cost</th>
-            <th>LTP</th>
-            <th>Cur. val</th>
-            <th>P&L</th>
-            <th>Net chg.</th>
-            <th>Day chg.</th>
-          </tr>
-          {holdings.map(function (holding , index) {
+          <thead>
+            <tr>
+              <th>Instrument</th>
+              <th>Qty.</th>
+              <th>Avg. cost</th>
+              <th>LTP</th>
+              <th>Cur. val</th>
+              <th>P&L</th>
+              <th>Net chg.</th>
+              <th>Day chg.</th>
+            </tr>
+          </thead>
+          {holdings.map(function (holding, index) {
             const currValue = holding.price * holding.qty;
             const isProfit = currValue - holding.avg * holding.qty >= 0.0;
-            const profClass = isProfit? "profit" : "loss";
-            const dayClass = holding.isLoss? "loss" : "profit";
+            const profClass = isProfit ? "profit" : "loss";
+            const dayClass = holding.isLoss ? "loss" : "profit";
 
             return (
-              <tr key={index}>
-                <td>{holding.name}</td>
-                <td>{holding.qty}</td>
-                <td>{holding.avg}</td>
-                <td>{holding.price}</td>
-                <td>{holding.qty * holding.price}</td>
-                <td>{((holding.price - holding.avg) * holding.qty).toFixed(2)}</td>
-                <td className={profClass}>{holding.net}</td>
-                <td className={dayClass}>{holding.day}</td>
-              </tr>
-            )
+              <tbody key={index}>
+                <tr>
+                  <td>{holding.name}</td>
+                  <td>{holding.qty}</td>
+                  <td>{holding.avg}</td>
+                  <td>{holding.price}</td>
+                  <td>{holding.qty * holding.price}</td>
+                  <td>
+                    {((holding.price - holding.avg) * holding.qty).toFixed(2)}
+                  </td>
+                  <td className={profClass}>{holding.net}</td>
+                  <td className={dayClass}>{holding.day}</td>
+                </tr>
+              </tbody>
+            );
           })}
         </table>
       </div>

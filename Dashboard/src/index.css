@@ -720,8 +720,8 @@ hr {
   width: 100%;
   height: 100%;
   align-items: center;
+  display: flex;
   justify-content: flex-end;
-  display: none;
 }
 
 .actions span button {
@@ -734,19 +734,19 @@ hr {
 }
 
 .buy {
-  background-color: #4184f3;
+  background-color: #4caf50;
   color: #fff;
   font-weight: 400;
   font-size: 0.8rem;
-  border: 0.7px solid #4184f3;
+  border: 0.7px solid #28a745;
 }
 
 .sell {
-  background-color: #ff5722;
+  background-color: #dc3545;
   color: #fff;
   font-weight: 400;
   font-size: 0.8rem;
-  border: 0.7px solid #ff5722;
+  border: 0.7px solid #dc3545;
 }
 
 .action {

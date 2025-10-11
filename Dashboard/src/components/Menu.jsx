@@ -54,7 +54,7 @@ function Menu() {
         </ul>
         <hr />
         <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">ZU</div>
+          <div className="avatar">OS</div>
           <p className="username">USERID</p>
         </div>
       </div>
