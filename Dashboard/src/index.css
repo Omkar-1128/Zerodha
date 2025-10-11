@@ -283,11 +283,11 @@ code {
 .menu {
   font-size: 0.8rem;
   font-weight: 400;
-  color: rgb(70, 70, 70);
+  color: rgb(245, 104, 52);
 }
 
 .menu.selected {
-  color: rgb(245, 104, 52);
+  color: rgb(70, 70, 70);
 }
 
 hr {
