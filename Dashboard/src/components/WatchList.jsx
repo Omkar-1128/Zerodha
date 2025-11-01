@@ -22,13 +22,6 @@ const WatchList = () => {
         <span className="counts"> {watchlist.length} / 50</span>
       </div>
 
-      {/* {
-    name: "INFY",
-    price: 1555.45,
-    percent: "-1.60%",
-    isDown: true,
-  }, */}
-
       <ul className="list">
         {watchlist.map((stock, idx) => {
           return <WatchListItem stock={stock} key={idx} />;
@@ -143,7 +136,10 @@ const WatchListActions = () => {
           >
             <button className="action"><MoreVertIcon /></button>
           </Tooltip>
-          
+  
+        </span>
+
+        <span>
         </span>
       </span>
     </>
