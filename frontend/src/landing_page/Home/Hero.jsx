@@ -9,7 +9,7 @@ function Hero() {
         <div className="row HeroContainer mt-5 mb-5">
           <img
             className="HeroImg"
-            src="/Media/images/homeHero.png"
+            src="/Media/images/homeHero.svg"
             alt="Home Hero image"
           />
         </div>

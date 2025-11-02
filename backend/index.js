@@ -1,9 +1,9 @@
 import express from "express";
-import mongoose, { mongo } from "mongoose";
-import dotenv from "dotenv";
+import mongoose from "mongoose";
 import { HoldingModel } from "./model/HoldingModel.js";
-import { holdings ,positions} from "../Dashboard/src/data/data.js";
 import { PositionModel } from "./model/PositionModel.js";
+import dotenv from "dotenv";
+
 import bodyParser from "body-parser";
 import cors from "cors";
 
@@ -32,29 +32,6 @@ main()
     console.log("DataBase connection error");
     console.log("Error: " + e);
   });
-
-// insert the starter data
-app.get("/addHoldingData", async (req, res) => {
-  try {
-    await HoldingModel.deleteMany({});
-    await HoldingModel.insertMany(holdings);
-    console.log("Holdings data saved to dataBase")
-    res.send("Holdings Data Saved SuccessFully");
-  } catch (e) {
-    res.send("Error: " + e);
-  }
-});
-
-app.get("/addPositionData" , async (req , res) => {
-    try {
-        await PositionModel.deleteMany({});
-        await PositionModel.insertMany(positions)
-        console.log("Positions data saved to dataBase")
-        res.send("Positions Data Saved SuccessFully");
-    } catch (e) {
-        res.send("Error: " + e)
-    }
-})
 
 // API Endpoints for Holdings and Positions
 // API for Holding
