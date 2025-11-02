@@ -1,5 +1,6 @@
 import React from "react";
 import "./Style.css";
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
@@ -27,7 +28,7 @@ function Hero() {
           <p className="accountDescription">
             Or track your existing application
           </p>
-          <div class="input-group flex-nowrap">
+          {/* <div class="input-group flex-nowrap">
             <span className="input-group-text" id="addon-wrapping">
               +91
             </span>
@@ -38,10 +39,21 @@ function Hero() {
               aria-label="Username"
               aria-describedby="addon-wrapping"
             />
-          </div>
-          <button className="mt-3 btn btn-primary accountButton">
-            <b>Get OTP</b>
-          </button>
+          </div> */}
+          <Link to="/Login">
+            <button className="mt-3 btn btn-primary accountButton">
+              <b>Login</b>
+            </button>
+          </Link>
+         
+          <p>
+            Not have an account? {" "}
+            <Link to="/Register">
+            <span style={{ color: "#387ed1" }} >
+              Sign Up Here
+            </span>
+            </Link>
+          </p>
           <p style={{ fontSize: "12px" }}>
             By proceeding, you agree to the Zerodha{" "}
             <a href="#" style={{ textDecoration: "none" }}>
