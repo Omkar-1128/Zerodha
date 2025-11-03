@@ -9,18 +9,20 @@ import Navbar from "./landing_page/Navbar";
 import Footer from "./landing_page/Footer";
 import PageNotFound from "./landing_page/PageNotFound";
 import ScrollToTop from "./ScrollToTop";
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
+import { RegisterForm , Home, LoginForm } from "./pages";
+// import LoginForm from "./LoginForm";
+// import RegisterForm from "./RegisterForm";
 
 export default function AppRoutes() {
   const location = useLocation();
-  const hideFooter = location.pathname === "/Login" || location.pathname === "/Register";
+  const hideFooter = location.pathname === "/Login" || location.pathname === "/Register" || location.pathname === "/Home";
 
   return (
     <>
       <ScrollToTop />
       <Navbar />
       <Routes>
+        <Route path="/Home" element={<Home />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/About" element={<About />} />
