@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        navigate("/login");
+        navigate("/Home");
       }
       const { data } = await axios.post(
         "http://localhost:8080/verify",

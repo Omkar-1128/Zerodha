@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "http://localhost:5174",      // <-- exact origin of your frontend (no wildcard)
+    origin: "http://localhost:5173",      // <-- exact origin of your frontend (no wildcard)
     credentials: true,                    // <-- allow cookies to be sent
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],

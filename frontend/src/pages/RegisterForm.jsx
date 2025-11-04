@@ -14,9 +14,12 @@ export default function RegisterForm() {
     password: "",
     username: "",
   });
+  const [errors, setErrors] = useState({});
   const { fullname, mobileNo, email, password, username } = inputValue;
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
+    setErrors((prev) => ({ ...prev, [name]: undefined }));
     setInputValue({
       ...inputValue,
       [name]: value,
@@ -32,8 +35,68 @@ export default function RegisterForm() {
       position: "bottom-right",
     });
 
+  const isValidEmail = (value) => {
+    const re =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+    return re.test(String(value).toLowerCase());
+  };
+
+  const validate = (values) => {
+    const errs = {};
+
+    // fullname: required, allow letters, spaces, dot, hyphen
+    if (!values.fullname || !values.fullname.trim()) {
+      errs.fullname = "Fullname is required.";
+    } else if (!/^[\p{L} .'-]+$/u.test(values.fullname.trim())) {
+      // \p{L} uses Unicode letters (works in modern browsers/node)
+      errs.fullname = "Fullname contains invalid characters.";
+    }
+
+    // username: required, min 3 chars
+    if (!values.username || !values.username.trim()) {
+      errs.username = "Username is required.";
+    } else if (values.username.length < 3) {
+      errs.username = "Username must be at least 3 characters.";
+    }
+
+    // email: required + robust validation
+    if (!values.email || !values.email.trim()) {
+      errs.email = "Email is required.";
+    } else if (!isValidEmail(values.email.trim())) {
+      errs.email = "Please enter a valid email address.";
+    }
+
+    // mobileNo: required, digits only, typical 10 digits (adjust to your rules)
+    if (!values.mobileNo || !values.mobileNo.trim()) {
+      errs.mobileNo = "Mobile number is required.";
+    } else if (!/^\d{10}$/.test(values.mobileNo.trim())) {
+      errs.mobileNo = "Mobile number must be 10 digits.";
+    }
+
+    // password: required, minimum length
+    if (!values.password) {
+      errs.password = "Password is required.";
+    } else if (values.password.length < 6) {
+      errs.password = "Password must be at least 6 characters.";
+    }
+    // optionally add: must contain digit / uppercase / symbol etc.
+
+    return errs;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const vals = { fullname, mobileNo, email, password, username };
+    const validationErrors = validate(vals);
+    setErrors(validationErrors);
+
+    // if any errors, stop and show a toast for the first error (optional)
+    const firstErrorKey = Object.keys(validationErrors)[0];
+    if (firstErrorKey) {
+      handleError(validationErrors[firstErrorKey]);
+      return;
+    }
+
     try {
       const { data } = await axios.post(
         "http://localhost:8080/Register",
@@ -47,41 +110,50 @@ export default function RegisterForm() {
         handleSuccess(message);
         setTimeout(() => {
           navigate("/Home");
-          // window.location.href = "http://localhost:5173/"
         }, 1000);
       } else {
         handleError(message);
       }
     } catch (error) {
       console.log(error);
+      handleError("Server error. Try again.");
     }
+
+    // clear form
     setInputValue({
-      ...inputValue,
       fullname: "",
       mobileNo: "",
       email: "",
       password: "",
       username: "",
     });
+    setErrors({});
   };
+
+  // helper to compute bootstrap className (only show validation after attempted submit)
+  const fieldClass = (fieldName) =>
+    `form-control inputBox ${errors[fieldName] ? "is-invalid" : ""}`;
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+    <div className="page">
+  <main>
+      <form id="registerForm" onSubmit={handleSubmit} noValidate>
         <div className="row">
           <div className="col-6 loginImage">
             <img src="/Media/images/loginImage.svg" alt="Login Image" />
           </div>
           <div className="col-6">
             <div
-              className="FormContainer d-flex flex-column justify-content-center"
+              className="FormContainer d-flex flex-column justify-content-center mt-5"
               style={{ height: "70vh" }}
             >
               <h3 style={{ marginBottom: "25px" }}>Sign Up</h3>
+
               <div className="form-floating mb-3">
                 <input
                   type="text"
-                  className="form-control inputBox"
+                  className={fieldClass("fullname")}
                   id="fullname"
                   placeholder="Lightning Ace"
                   onChange={handleOnChange}
@@ -89,23 +161,33 @@ export default function RegisterForm() {
                   name="fullname"
                 />
                 <label htmlFor="fullname">Fullname</label>
+                <div className="valid-feedback">Looks good!</div>
+                <div className="invalid-feedback">
+                  {errors.fullname || "Please Enter your name."}
+                </div>
               </div>
+
               <div className="form-floating mb-3">
                 <input
                   type="text"
-                  className="form-control inputBox"
+                  className={fieldClass("username")}
                   id="username"
-                  placeholder="lighningAce@272"
+                  placeholder="lightningAce@272"
                   onChange={handleOnChange}
                   value={username}
                   name="username"
                 />
                 <label htmlFor="username">Username</label>
+                <div className="valid-feedback">Looks good!</div>
+                <div className="invalid-feedback">
+                  {errors.username || "Please Enter a username."}
+                </div>
               </div>
+
               <div className="form-floating mb-3">
                 <input
                   type="email"
-                  className="form-control inputBox"
+                  className={fieldClass("email")}
                   id="email"
                   placeholder="name@example.com"
                   onChange={handleOnChange}
@@ -113,11 +195,16 @@ export default function RegisterForm() {
                   name="email"
                 />
                 <label htmlFor="email">Email</label>
+                <div className="valid-feedback">Looks good!</div>
+                <div className="invalid-feedback">
+                  {errors.email || "Please Enter an email."}
+                </div>
               </div>
+
               <div className="form-floating mb-3">
                 <input
                   type="text"
-                  className="form-control inputBox"
+                  className={fieldClass("mobileNo")}
                   id="MobileNo"
                   placeholder="9373xxxxxx"
                   onChange={handleOnChange}
@@ -125,11 +212,15 @@ export default function RegisterForm() {
                   name="mobileNo"
                 />
                 <label htmlFor="MobileNo">Mobile No</label>
+                <div className="invalid-feedback">
+                  {errors.mobileNo || "Mobile number required."}
+                </div>
               </div>
+
               <div className="form-floating">
                 <input
                   type="password"
-                  className="form-control inputBox"
+                  className={fieldClass("password")}
                   id="floatingPassword"
                   onChange={handleOnChange}
                   placeholder="Password"
@@ -137,7 +228,11 @@ export default function RegisterForm() {
                   name="password"
                 />
                 <label htmlFor="floatingPassword">Password</label>
+                <div className="invalid-feedback">
+                  {errors.password || "Please Enter a password."}
+                </div>
               </div>
+
               <p style={{ marginTop: "10px" }}>
                 Already have an account?{" "}
                 <Link to="/Login">
@@ -148,10 +243,13 @@ export default function RegisterForm() {
           </div>
         </div>
 
-        <footer className="footer">
-          <button type="submit">Sign Up</button>
-        </footer>
+        
       </form>
+      </main>
+      <footer className="footer">
+          <button type="submit" form="registerForm">Sign Up</button>
+        </footer>
+</div>
       <ToastContainer />
     </>
   );

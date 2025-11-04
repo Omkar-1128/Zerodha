@@ -31,13 +31,14 @@ export const Login = async (req, res, next) => {
     if(!username || !password ){
       return res.json({message:'All fields are required'})
     }
-    const user = await User.findOne({ username });
+    const isEmail = username.includes("@");
+    const user = isEmail? await User.findOne({ email: username }) : await User.findOne({ username });
     if(!user){
-      return res.json({message:'Incorrect password or username' }) 
+      return res.json({message:'Incorrect password or username/email' }) 
     }
     const auth = await bcrypt.compare(password,user.password)
     if (!auth) {
-      return res.json({message:'Incorrect password or username' }) 
+      return res.json({message:'Incorrect password or username/email' }) 
     }
      const token = createSecretToken(user._id);
      res.cookie("token", token, {
