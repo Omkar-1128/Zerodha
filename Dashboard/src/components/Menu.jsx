@@ -1,20 +1,51 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
+import axios from "axios";
+import Profile from "./Profile";
 
 function Menu() {
   const [selectedMenu , setSelectedMenu] = useState(0);
-  const [isProfileDropdownOpen , setIsProfileDropdownOpen] = useState(false);
 
   const handleMenuClicks = (index) => {
     setSelectedMenu(index);
   }
 
-  const handleProfileClick = () => {
-    setIsProfileDropdownOpen(!isProfileDropdownOpen);
-  }
-
   const menuClass = "menu";
   const activeMenuClass = "menu selected";
+
+  const navigate = useNavigate();
+    const [cookies, removeCookie] = useCookies(["token"]);
+    const [username, setUsername] = useState("");
+    useEffect(() => {
+      const verifyCookie = async () => {
+        if (!cookies.token) {
+          // navigate("/Home");
+          window.location.href = "http://localhost:5174/";
+        }
+        const { data } = await axios.post(
+          "http://localhost:8080/verify",
+          {},
+          { withCredentials: true }
+        );
+        const { status, user } = data;
+        setUsername(user);
+        return status
+          ? toast(`Hello ${user}`, {
+              position: "top-right",
+            })
+          : (removeCookie("token"), window.location.href = "http://localhost:5173/login");
+      };
+      verifyCookie();
+    }, [cookies, navigate, removeCookie]);
+    const Logout = () => {
+      removeCookie("token");
+      // navigate("/signup");
+      window.location.href = "http://localhost:5173/Register";
+    };
 
   return (
     <div className="menu-container">
@@ -53,10 +84,7 @@ function Menu() {
           </li>
         </ul>
         <hr />
-        <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">OS</div>
-          <p className="username">USERID</p>
-        </div>
+        < Profile username={username} Logout={Logout}/>
       </div>
     </div>
   );

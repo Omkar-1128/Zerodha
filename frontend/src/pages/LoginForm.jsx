@@ -1,12 +1,13 @@
 import React from "react";
 import "./style.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function LoginForm() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     username: "",
     password: "",
@@ -76,7 +77,8 @@ export default function LoginForm() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/Home");
+          window.location.href = "http://localhost:5174/";
+          // navigate("/Home");
         }, 1000);
       } else {
         handleError(message);

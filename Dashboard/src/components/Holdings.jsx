@@ -11,6 +11,10 @@ const Holdings = () => {
     axios.get("http://localhost:8080/getHoldings").then((res) => {
       setAllHoldings(res.data)
     })
+    .catch(err => {
+      console.error("Axios error:", err?.code, err?.message);
+      console.error("Full error:", err?.toJSON?.() || err);
+    });
   } , [])
 
 

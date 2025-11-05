@@ -309,13 +309,16 @@ hr {
   position: relative;
   font-size: 0.7rem;
   font-weight: 400;
-  color: rgb(221, 139, 221);
+  /* color: rgb(221, 139, 221); */
+  color: white;
   justify-content: center;
   align-items: center;
   border-radius: 100%;
   text-align: center;
   display: flex;
-  background: rgb(252, 229, 252);
+  /* background: rgb(252, 229, 252); */
+  /* background-color: #28a745; */
+  background-color: #dc3545;
   margin-right: 8px;
 }
 
@@ -844,3 +847,6 @@ hr {
 
 
 
+.profile-item :hover {
+  color: #dc3545;
+}
