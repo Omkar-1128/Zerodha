@@ -74,6 +74,12 @@ app.get("/getPositions", async (req, res) => {
   res.json(allPositions);
 });
 
+// API for Orders
+app.get("/orders" , async (req , res) => {
+  let allOrders = await OrderModel.find();
+  res.json(allOrders)
+})
+
 app.use("/" , orderRouter);
 
 app.get("/", (req, res) => {

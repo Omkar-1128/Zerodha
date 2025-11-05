@@ -1,22 +1,38 @@
 import React from "react";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import "./Holding.css";
+import VerticalBarChart from "./VerticleBarChart";
 
 // import { holdings } from "../data/data";
 
 const Holdings = () => {
-  let [allHoldings , setAllHoldings] = useState([]);
+  let [allHoldings, setAllHoldings] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/getHoldings").then((res) => {
-      setAllHoldings(res.data)
-    })
-    .catch(err => {
-      console.error("Axios error:", err?.code, err?.message);
-      console.error("Full error:", err?.toJSON?.() || err);
-    });
-  } , [])
+    axios
+      .get("http://localhost:8080/getHoldings")
+      .then((res) => {
+        setAllHoldings(res.data);
+      })
+      .catch((err) => {
+        console.error("Axios error:", err?.code, err?.message);
+        console.error("Full error:", err?.toJSON?.() || err);
+      });
+  }, []);
 
+  const labels = allHoldings.map((subArray) => subArray["name"]);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Stock Price",
+        data: allHoldings.map((stock) => stock.price),
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
 
   return (
     <>
@@ -80,6 +96,7 @@ const Holdings = () => {
           <p>P&L</p>
         </div>
       </div>
+      <VerticalBarChart data={data} />
     </>
   );
 };
