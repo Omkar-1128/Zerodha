@@ -11,6 +11,7 @@
   height: auto;
 }
 
+
 html, body, #root { height: 100%; }
 
 .page { 
@@ -61,5 +62,126 @@ html, body, #root { height: 100%; }
 
 .inputBox {
     width: 400px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .loginImage {
+        display: none;
+    }
+
+    .FormContainer {
+        height: auto !important;
+        padding: 30px 20px;
+        min-height: auto;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .FormContainer h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px !important;
+    }
+
+    .inputBox {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .footer {
+        height: 70px;
+        padding-right: 15px;
+        padding-left: 15px;
+        justify-content: center;
+    }
+
+    .footer button {
+        padding: 10px 40px;
+        font-size: 15px;
+        width: 100%;
+        max-width: 250px;
+        font-weight: 500;
+    }
+
+    .form-floating {
+        margin-bottom: 20px;
+    }
+
+    .form-floating label {
+        font-size: 0.95rem;
+        color: #666666;
+    }
+
+    .form-floating input {
+        font-size: 1rem;
+        padding: 14px 16px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+    }
+
+    .form-floating input:focus {
+        border-color: #387ed1;
+        box-shadow: 0 0 0 0.2rem rgba(56, 126, 209, 0.15);
+    }
+
+    .invalid-feedback {
+        font-size: 0.85rem;
+        margin-top: 5px;
+    }
+
+    .FormContainer p {
+        font-size: 0.9rem;
+        margin-top: 15px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .FormContainer {
+        padding: 25px 15px;
+    }
+
+    .FormContainer h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px !important;
+    }
+
+    .inputBox {
+        width: 100%;
+    }
+
+    .footer {
+        height: 65px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .footer button {
+        padding: 9px 35px;
+        font-size: 14px;
+        max-width: 220px;
+    }
+
+    .form-floating {
+        margin-bottom: 18px;
+    }
+
+    .form-floating label {
+        font-size: 0.9rem;
+    }
+
+    .form-floating input {
+        font-size: 0.95rem;
+        padding: 12px 14px;
+    }
+
+    .invalid-feedback {
+        font-size: 0.8rem;
+    }
+
+    .FormContainer p {
+        font-size: 0.85rem;
+        margin-top: 12px;
+    }
 }
 

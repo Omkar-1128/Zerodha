@@ -1,0 +1,145 @@
+/* ============================
+   Zerodha-style Orders Section
+   (with clean BEM class naming)
+============================ */
+
+.orders__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: black;
+  margin: 20px 0 10px 0;
+  padding-left: 10px;
+}
+
+.orders__container {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  min-height: 200px;
+}
+
+/* Empty State */
+.orders__empty {
+  text-align: center;
+  padding: 40px 0;
+  color: #555;
+}
+
+.orders__empty-text {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.orders__btn {
+  background-color: #387ed1;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.orders__btn:hover {
+  background-color: #296bb1;
+}
+
+/* Table */
+.orders__table-wrapper {
+  overflow-x: auto;
+}
+
+.orders__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  margin-top: 10px;
+}
+
+.orders__thead {
+  background-color: #f5f8fa;
+  border-bottom: 1px solid #e1e5eb;
+}
+
+.orders__thead th {
+  text-align: left;
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #4a4a4a;
+  text-transform: uppercase;
+}
+
+.orders__tbody tr {
+  border-bottom: 1px solid #f0f2f5;
+  transition: background 0.2s ease;
+}
+
+.orders__tbody tr:hover {
+  background-color: #f9fbfd;
+}
+
+.orders__tbody td {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Numeric columns aligned right */
+.orders__cell--num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mode (BUY/SELL) */
+.orders__mode {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.orders__mode--buy {
+    color: #2e7d32 !important;
+}
+.orders__mode--sell {
+    color: #d32f2f !important;
+}
+
+/* Status chips */
+.orders__status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #e5f3ff;
+  color: #1976d2;
+  text-transform: capitalize;
+}
+
+.orders__status--executed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.orders__status--pending {
+  background-color: #fff4e5;
+  color: #ef6c00;
+}
+
+.orders__status--cancelled {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .orders__table th,
+  .orders__table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .orders__title {
+    font-size: 1.2rem;
+  }
+}

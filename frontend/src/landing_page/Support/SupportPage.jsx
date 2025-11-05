@@ -10,7 +10,7 @@ function SupportPage() {
         <Tickets />
         <div className="container">
           <div className="row">
-            <div className="col-8">
+            <div className="col-12 col-lg-8 mb-4 mb-lg-0">
           <Sections
             heading={"Account Opening"}
             icon={<i className="fa-solid fa-circle-plus"></i>}
@@ -72,7 +72,7 @@ function SupportPage() {
             link5={"Payments and Orders"}
           />
           </div>
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
             <Quicklinks />
           </div>
         </div>

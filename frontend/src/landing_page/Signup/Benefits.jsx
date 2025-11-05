@@ -5,7 +5,7 @@ function Benefits() {
     <div>
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-5 Benefits-image-h">
+          <div className="col-12 col-md-6 col-lg-5 Benefits-image-h mb-4 mb-lg-0">
             <div>
               <img
                 className="Benefits-image"
@@ -15,7 +15,7 @@ function Benefits() {
             </div>
             <h4>Benefits of opening a Zerodha demat account</h4>
           </div>
-          <div className="col-5">
+          <div className="col-12 col-md-6 col-lg-5">
             <div className="Benefits-h-p">
               <h5>Unbeatable pricing</h5>
               <p>

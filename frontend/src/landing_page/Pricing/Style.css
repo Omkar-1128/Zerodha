@@ -22,6 +22,7 @@
     table-layout: fixed;
     width: 100%;
     border: 1px solid rgb(221, 221, 221);
+    word-wrap: break-word;
 }
 
 .equal-columns th,
@@ -30,10 +31,18 @@
     font-size: 14px;
     color: #424242;
     padding: 12px 15px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .equal-columns th {
     font-weight: 500;
+}
+
+.equal-columns td ul {
+    text-align: left;
+    margin: 0;
+    padding-left: 20px;
 }
 
 .BrokerageTable {
@@ -77,4 +86,192 @@
     margin-top: 12px;
     margin-bottom: 15px;
     font-size: 12px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .HeroHeading {
+        font-size: 22px;
+        padding-top: 50px;
+    }
+
+    .HeroContent {
+        font-size: 16px;
+        padding-bottom: 50px;
+    }
+
+    .PricesContainer {
+        margin-top: 40px;
+    }
+
+    .PriceContent {
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .PricesContainer h4 {
+        font-size: 1.2rem;
+    }
+
+    .BrokerageContainer {
+        padding: 40px 0;
+    }
+
+    .BrokerageTable {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .BrokerageTable th {
+        padding: 4px 8px;
+        font-size: 16px;
+    }
+
+    .equal-columns {
+        font-size: 12px;
+        table-layout: auto;
+        min-width: 100%;
+    }
+
+    .equal-columns th,
+    .equal-columns td {
+        padding: 8px 10px;
+        font-size: 12px;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.4;
+    }
+
+    .equal-columns th:first-child,
+    .equal-columns td:first-child {
+        min-width: 120px;
+        text-align: left;
+    }
+
+    .equal-columns td ul {
+        font-size: 11px;
+        padding-left: 15px;
+    }
+
+    .AccountCharges {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .AccountCharges th,
+    .AccountCharges td {
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+
+    .DematTable {
+        margin-top: 40px;
+    }
+
+    .AccountCharges caption {
+        font-size: 11px;
+    }
+
+    .BrokerageContainer h4 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .HeroHeading {
+        font-size: 20px;
+        padding-top: 30px;
+    }
+
+    .HeroContent {
+        font-size: 14px;
+        padding-bottom: 30px;
+    }
+
+    .PricesContainer {
+        margin-top: 30px;
+    }
+
+    .PriceContent {
+        font-size: 13px;
+    }
+
+    .PricesContainer h4 {
+        font-size: 1.1rem;
+    }
+
+    .BrokerageContainer {
+        padding: 30px 0;
+    }
+
+    .BrokerageTable {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .BrokerageTable th {
+        padding: 3px 6px;
+        font-size: 14px;
+    }
+
+    .equal-columns {
+        font-size: 11px;
+        table-layout: auto;
+    }
+
+    .equal-columns th,
+    .equal-columns td {
+        padding: 6px 8px;
+        font-size: 11px;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
+    }
+
+    .equal-columns th:first-child,
+    .equal-columns td:first-child {
+        min-width: 100px;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .equal-columns td ul {
+        font-size: 10px;
+        padding-left: 12px;
+    }
+
+    .AccountCharges {
+        font-size: 12px;
+    }
+
+    .AccountCharges th,
+    .AccountCharges td {
+        font-size: 12px;
+        padding: 8px 6px;
+    }
+
+    .DematTable {
+        margin-top: 30px;
+    }
+
+    .AccountCharges caption {
+        font-size: 10px;
+    }
+
+    .ChargesHeading {
+        font-size: 1.1rem;
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .ChargesHeading {
+        font-size: 1rem;
+    }
+}
+
+.ChargesHeading {
+    font-size: 1.25rem;
 }

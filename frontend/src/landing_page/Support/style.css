@@ -114,3 +114,174 @@ h2 {
     margin-bottom: 10px;
     line-height: 1.7;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .ticketContainer {
+        padding: 25px 15px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        padding-bottom: 10px;
+    }
+
+    .ticketButton {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .SearchBar {
+        height: 50px;
+        font-size: 0.9rem;
+    }
+
+    .SearchBar::placeholder {
+        font-size: 0.85rem;
+    }
+
+    .accordion-button {
+        height: 55px;
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .HeadingSection {
+        font-size: 16px !important;
+    }
+
+    .accordion {
+        padding-top: 20px;
+    }
+
+    .accordion-body {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .anchorList {
+        font-size: 0.9rem;
+        line-height: 2.2;
+    }
+
+    .AccountCharges {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .AccountCharges th {
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+
+    .AccountCharges td {
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+
+    .QuickLinks {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .QuickLinks ul {
+        padding-left: 20px;
+        margin-bottom: 0;
+    }
+
+    .QuickLinks li {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+
+    .QuickLinks li a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .ticketContainer {
+        padding: 20px 10px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        padding-bottom: 8px;
+    }
+
+    .ticketButton {
+        padding: 7px 12px;
+        font-size: 0.85rem;
+    }
+
+    .SearchBar {
+        height: 45px;
+        font-size: 0.85rem;
+    }
+
+    .SearchBar::placeholder {
+        font-size: 0.8rem;
+    }
+
+    .accordion-button {
+        height: 50px;
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+
+    .HeadingSection {
+        font-size: 15px !important;
+    }
+
+    .accordion {
+        padding-top: 15px;
+    }
+
+    .accordion-body {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    .anchorList {
+        font-size: 0.85rem;
+        line-height: 2;
+    }
+
+    .AccountCharges {
+        font-size: 13px;
+    }
+
+    .AccountCharges th {
+        font-size: 13px;
+        padding: 8px 6px;
+    }
+
+    .AccountCharges td {
+        font-size: 13px;
+        padding: 8px 6px;
+    }
+
+    .QuickLinks {
+        padding: 12px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .QuickLinks ul {
+        padding-left: 18px;
+    }
+
+    .QuickLinks li {
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+        line-height: 1.4;
+    }
+
+    .QuickLinks li a {
+        font-size: 0.85rem;
+    }
+}

@@ -7,7 +7,7 @@ function Footer() {
       <footer className="border-top footer-border">
         <div className="container">
           <div className="row">
-            <div className="col">
+            <div className="col-12 col-md-6 col-lg col-footer mb-4 mb-lg-0">
               <img
                 className="footer-image"
                 src="/Media/images/logo.svg"
@@ -29,7 +29,7 @@ function Footer() {
                 <i class="fa-brands fa-telegram footer-icon"></i>
               </div>
             </div>
-            <div className="col">
+            <div className="col-6 col-md-3 col-lg col-footer mb-4 mb-lg-0">
               <p>Account</p>
               <a href="#">Open demat account</a>
               <br />
@@ -47,7 +47,7 @@ function Footer() {
               <br />
               <a href="#">Referral program</a>
             </div>
-            <div className="col">
+            <div className="col-6 col-md-3 col-lg col-footer mb-4 mb-lg-0">
               <p>Support</p>
               <a href="#">Contact us</a>
               <br />
@@ -65,7 +65,7 @@ function Footer() {
               <br />
               <a href="#">Downloads</a>
             </div>
-            <div className="col">
+            <div className="col-6 col-md-3 col-lg col-footer mb-4 mb-lg-0">
               <p>Company</p>
               <a href="#">About</a>
               <br />
@@ -81,7 +81,7 @@ function Footer() {
               <br />
               <a href="#">Open source</a>
             </div>
-            <div className="col">
+            <div className="col-6 col-md-3 col-lg col-footer mb-4 mb-lg-0">
               <p>Quick links</p>
               <a href="#">Upcoming IPOs</a>
               <br />

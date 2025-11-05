@@ -103,15 +103,18 @@ export default function LoginForm() {
     <>
       <form onSubmit={handleSubmit} className="needs-validation" noValidate>
         <div className="row">
-          <div className="col-6 loginImage">
+          <div className="col-12 col-md-6 loginImage order-2 order-md-1">
             <img src="/Media/images/loginImage.svg" alt="Login Image" />
           </div>
-          <div className="col-6">
+          <div className="col-12 col-md-6 order-1 order-md-2">
             <div
               className="FormContainer d-flex flex-column justify-content-center"
               style={{ height: "70vh" }}
             >
-              <h3 style={{ marginBottom: "25px" }}>Login</h3>
+              <div className="mb-4">
+                <h3 className="mb-2">Login</h3>
+                <p style={{ color: "#666666", fontSize: "14px" }}>Welcome back! Please login to your account.</p>
+              </div>
 
               <div className="form-floating mb-3">
                 <input

@@ -5,15 +5,15 @@ function Tickets() {
     <div className="ticketContainer">
       <div className="container">
         <div className="row">
-          <div className="col-10">
+          <div className="col-12 col-md-8 col-lg-10 mb-3 mb-md-0">
             <h2><b>Support Portal</b></h2>
           </div>
-          <div className="col-2">
-            <button className="ticketButton">My tickets</button>
+          <div className="col-12 col-md-4 col-lg-2">
+            <button className="ticketButton w-100 w-md-auto">My tickets</button>
           </div>
         </div>
         <div className="row">
-          <div className="col-11">
+          <div className="col-12">
             <div className="input-group">
               <span className="input-group-text bg-white border-end-0 text-muted">
                 <i className="fa-solid fa-magnifying-glass"></i>

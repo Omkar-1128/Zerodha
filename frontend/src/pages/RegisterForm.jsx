@@ -16,6 +16,7 @@ export default function RegisterForm() {
     username: "",
   });
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
   const { fullname, mobileNo, email, password, username } = inputValue;
 
   const handleOnChange = (e) => {
@@ -87,6 +88,7 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitted(true);
     const vals = { fullname, mobileNo, email, password, username };
     const validationErrors = validate(vals);
     setErrors(validationErrors);
@@ -134,7 +136,7 @@ export default function RegisterForm() {
 
   // helper to compute bootstrap className (only show validation after attempted submit)
   const fieldClass = (fieldName) =>
-    `form-control inputBox ${errors[fieldName] ? "is-invalid" : ""}`;
+    `form-control inputBox ${submitted && errors[fieldName] ? "is-invalid" : ""}`;
 
   return (
     <>
@@ -142,10 +144,10 @@ export default function RegisterForm() {
   <main>
       <form id="registerForm" onSubmit={handleSubmit} noValidate>
         <div className="row">
-          <div className="col-6 loginImage">
+          <div className="col-12 col-md-6 loginImage order-2 order-md-1">
             <img src="/Media/images/loginImage.svg" alt="Login Image" />
           </div>
-          <div className="col-6">
+          <div className="col-12 col-md-6 order-1 order-md-2">
             <div
               className="FormContainer d-flex flex-column justify-content-center mt-5"
               style={{ height: "70vh" }}
@@ -163,10 +165,11 @@ export default function RegisterForm() {
                   name="fullname"
                 />
                 <label htmlFor="fullname">Fullname</label>
-                <div className="valid-feedback">Looks good!</div>
-                <div className="invalid-feedback">
-                  {errors.fullname || "Please Enter your name."}
-                </div>
+                {submitted && errors.fullname && (
+                  <div className="invalid-feedback">
+                    {errors.fullname}
+                  </div>
+                )}
               </div>
 
               <div className="form-floating mb-3">
@@ -180,10 +183,11 @@ export default function RegisterForm() {
                   name="username"
                 />
                 <label htmlFor="username">Username</label>
-                <div className="valid-feedback">Looks good!</div>
-                <div className="invalid-feedback">
-                  {errors.username || "Please Enter a username."}
-                </div>
+                {submitted && errors.username && (
+                  <div className="invalid-feedback">
+                    {errors.username}
+                  </div>
+                )}
               </div>
 
               <div className="form-floating mb-3">
@@ -197,10 +201,11 @@ export default function RegisterForm() {
                   name="email"
                 />
                 <label htmlFor="email">Email</label>
-                <div className="valid-feedback">Looks good!</div>
-                <div className="invalid-feedback">
-                  {errors.email || "Please Enter an email."}
-                </div>
+                {submitted && errors.email && (
+                  <div className="invalid-feedback">
+                    {errors.email}
+                  </div>
+                )}
               </div>
 
               <div className="form-floating mb-3">
@@ -214,9 +219,11 @@ export default function RegisterForm() {
                   name="mobileNo"
                 />
                 <label htmlFor="MobileNo">Mobile No</label>
-                <div className="invalid-feedback">
-                  {errors.mobileNo || "Mobile number required."}
-                </div>
+                {submitted && errors.mobileNo && (
+                  <div className="invalid-feedback">
+                    {errors.mobileNo}
+                  </div>
+                )}
               </div>
 
               <div className="form-floating">
@@ -230,9 +237,11 @@ export default function RegisterForm() {
                   name="password"
                 />
                 <label htmlFor="floatingPassword">Password</label>
-                <div className="invalid-feedback">
-                  {errors.password || "Please Enter a password."}
-                </div>
+                {submitted && errors.password && (
+                  <div className="invalid-feedback">
+                    {errors.password}
+                  </div>
+                )}
               </div>
 
               <p style={{ marginTop: "10px" }}>

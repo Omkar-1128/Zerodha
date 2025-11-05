@@ -5,7 +5,7 @@ function Charges() {
     <div>
       <div className="container">
         <div className="row">
-          <h4 className="ms-4 mb-4">Charges for account opening</h4>
+          <h4 className="ms-4 mb-4 ChargesHeading">Charges for account opening</h4>
           <div className="table-responsive d-flex justify-content-center">
             <table className="table equal-columns AccountCharges table-borderless">
               <thead>
@@ -61,7 +61,7 @@ function Charges() {
         </div>
 
         <div className="row">
-          <h4 className="ms-4 mb-4 DematTable">
+          <h4 className="ms-4 mb-4 DematTable ChargesHeading">
             Demat AMC (Annual Maintenance Charge)
           </h4>
           <div className="table-responsive d-flex justify-content-center">
@@ -118,7 +118,7 @@ function Charges() {
         </div>
 
         <div className="row">
-          <h4 className="ms-4 mb-4">Charges for account opening</h4>
+          <h4 className="ms-4 mb-4 ChargesHeading">Charges for account opening</h4>
           <div className="table-responsive d-flex justify-content-center">
             <table className="table equal-columns AccountCharges table-borderless">
               <thead>

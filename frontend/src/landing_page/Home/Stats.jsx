@@ -6,13 +6,13 @@ function Stats() {
     <div>
       <div className="container StatsContainer">
         <div className="row justify-content-center">
-          <div className="col-4 StatsText">
+          <div className="col-12 col-md-4 StatsText">
             <h3>Trust with confidence</h3>
             <div className="StatsContent">
               <h4>Customer-first always</h4>
               <p>
                 That's why 1.6+ crore customers trust Zerodha with ~ ₹6 lakh
-                crores of equity investments, making us India’s largest broker;
+                crores of equity investments, making us India's largest broker;
                 contributing to 15% of daily retail exchange volumes in India.
               </p>
             </div>
@@ -51,7 +51,7 @@ function Stats() {
               </p>
             </div>
           </div>
-          <div className="col-6 justify-content-center">
+          <div className="col-12 col-md-6 justify-content-center">
             <a href="#">
               <img
                 className="EcosystemImage"

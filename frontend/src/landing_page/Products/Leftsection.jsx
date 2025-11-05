@@ -13,12 +13,12 @@ function Leftsection({
     <div>
       <div className="container LeftSection">
         <div className="row d-flex align-items-center justify-content-evenly">
-          <div className="col-5 productImage">
+          <div className="col-12 col-md-6 col-lg-5 productImage mb-4 mb-lg-0">
             <a href="#">
               <img src={image} alt="Kite image" />
             </a>
           </div>
-          <div className="col-4 LeftSectionContent">
+          <div className="col-12 col-md-6 col-lg-4 LeftSectionContent">
             <h3>{heading}</h3>
             <p>{description}</p>
             <span>

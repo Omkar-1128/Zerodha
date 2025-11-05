@@ -11,9 +11,11 @@
 }
 
 .ceo-image {
-    height: 295px;
     width: 295px;
+    height: 295px;
     border-radius: 50%;
+    max-width: 100%;
+    object-fit: cover;
 }
 
 .Team-Content {
@@ -32,4 +34,101 @@
 
 .Team-image-content {
     margin-top: 20px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .Hero-heading {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-size: 20px;
+        padding: 0 15px;
+    }
+
+    .Hero-heading h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .Hero-content {
+        margin-top: 50px;
+    }
+
+    .Hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .ceo-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .Team-Content {
+        margin-top: 40px;
+    }
+
+    .Team-Content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    .Team-row {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .Team-image-content {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .Team-image-content p {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .Hero-heading {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-size: 18px;
+    }
+
+    .Hero-heading h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .Hero-content {
+        margin-top: 30px;
+    }
+
+    .Hero-content p {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+    .ceo-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .Team-Content {
+        margin-top: 30px;
+    }
+
+    .Team-Content h3 {
+        font-size: 1.3rem;
+    }
+
+    .Team-row {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .Team-image-content p {
+        font-size: 0.85rem;
+    }
 }

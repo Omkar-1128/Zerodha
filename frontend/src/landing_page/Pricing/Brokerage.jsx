@@ -5,7 +5,7 @@ function Brokerage() {
     <div>
       <div className="container BrokerageContainer p-5">
         <div className="row">
-          <div className="table-responsive">
+          <div className="table-responsive" style={{ overflowX: "auto" }}>
             <table className="table w-auto BrokerageTable">
               <thead>
                 <tr>

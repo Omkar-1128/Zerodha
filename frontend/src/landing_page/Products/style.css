@@ -45,3 +45,157 @@
     background-color: #387ed1;
     color: white;
 }
+
+.productImage img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .Hero {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .Hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .HeroP1 {
+        font-size: 1rem !important;
+    }
+
+    .HeroP2 {
+        font-size: 0.9rem;
+    }
+
+    .LeftSection {
+        margin-top: 40px;
+    }
+
+    .LeftSectionContent h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .LeftSectionContent p {
+        font-size: 0.9rem;
+        line-height: 24px;
+        margin-bottom: 15px;
+    }
+
+    .LeftSectionContent a {
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .productImage {
+        margin-bottom: 20px;
+    }
+
+    .universeHero {
+        margin-top: 40px;
+    }
+
+    .universeHero h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .universeHero p {
+        font-size: 0.9rem;
+        margin: 10px 0;
+    }
+
+    .universeContent {
+        font-size: 11px;
+        margin-top: 10px;
+    }
+
+    .Universe .row {
+        padding: 20px !important;
+    }
+
+    .accountButton {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .Hero {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .Hero h2 {
+        font-size: 1.3rem;
+    }
+
+    .HeroP1 {
+        font-size: 0.9rem !important;
+    }
+
+    .HeroP2 {
+        font-size: 0.85rem;
+    }
+
+    .LeftSection {
+        margin-top: 30px;
+    }
+
+    .LeftSectionContent h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .LeftSectionContent p {
+        font-size: 0.85rem;
+        line-height: 22px;
+    }
+
+    .LeftSectionContent a {
+        font-size: 0.85rem;
+    }
+
+    .LeftSectionContent span {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .LeftSectionContent span a:first-child {
+        margin-right: 15px;
+    }
+
+    .universeHero {
+        margin-top: 30px;
+    }
+
+    .universeHero h3 {
+        font-size: 1.2rem;
+    }
+
+    .universeHero p {
+        font-size: 0.85rem;
+    }
+
+    .universeContent {
+        font-size: 10px;
+    }
+
+    .Universe .row {
+        padding: 15px !important;
+    }
+
+    .accountButton {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+
+    .productImage img {
+        width: 100%;
+        max-width: 300px;
+    }
+}
