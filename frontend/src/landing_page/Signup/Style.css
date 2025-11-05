@@ -64,6 +64,12 @@
     color: #666666;
 }
 
+.investment-icon {
+    max-width: 100%;
+    height: auto;
+    width: 60px;
+}
+
 .exploreButton {
     padding: 10px 30px;
     background-color: #387ed1;
@@ -131,4 +137,240 @@
     color:#424242;
     margin-bottom: 50px;
     margin-top: 100px;
+}
+
+.HeroImage {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .HeroInfo {
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+
+    .HeroInfo h2 {
+        font-size: 1.5rem;
+    }
+
+    .HeroInfo p {
+        font-size: 16px;
+    }
+
+    .accountHeading {
+        font-size: 1.3rem;
+        margin-top: 15px;
+    }
+
+    .accountDescription {
+        font-size: 16px;
+        margin-top: 8px;
+        margin-bottom: 12px;
+    }
+
+    .accountButton {
+        padding: 10px 40px;
+        padding-left: 60px;
+        padding-right: 60px;
+        font-size: 0.9rem;
+        margin-left: 15px;
+    }
+
+    .MobileInput {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .Investment-Heading {
+        padding-top: 50px;
+        margin-bottom: 30px;
+        font-size: 1.3rem;
+    }
+
+    .investment-info {
+        margin-top: 15px;
+    }
+
+    .investment-info h4 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .investment-info p {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    .investment-icon {
+        width: 50px;
+        margin-bottom: 10px;
+    }
+
+    .exploreButton {
+        padding: 8px 25px;
+        font-size: 0.9rem;
+        margin-bottom: 50px;
+    }
+
+    .Benefits-image {
+        height: auto;
+        width: 100%;
+        max-width: 350px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .Benefits-image-h {
+        margin-bottom: 30px;
+    }
+
+    .Benefits-image-h h4 {
+        font-size: 1.2rem;
+        padding-bottom: 30px;
+        text-align: center;
+    }
+
+    .Benefits-h-p h5 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
+
+    .Benefits-h-p p {
+        font-size: 0.9rem;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .ExploreCards {
+        margin-left: 0;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .ExploreCards h4 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .ExploreCards p {
+        font-size: 0.9rem;
+    }
+
+    .Explore-heading {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    .HeroInfo {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
+    .HeroInfo h2 {
+        font-size: 1.3rem;
+    }
+
+    .HeroInfo p {
+        font-size: 14px;
+    }
+
+    .accountHeading {
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+
+    .accountDescription {
+        font-size: 14px;
+    }
+
+    .accountButton {
+        padding: 8px 30px;
+        padding-left: 40px;
+        padding-right: 40px;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .MobileInput {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .Investment-Heading {
+        padding-top: 30px;
+        margin-bottom: 25px;
+        font-size: 1.2rem;
+    }
+
+    .investment-info {
+        margin-top: 12px;
+    }
+
+    .investment-info h4 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .investment-info p {
+        font-size: 0.85rem;
+        margin-bottom: 0;
+    }
+
+    .investment-icon {
+        width: 45px;
+        margin-bottom: 8px;
+    }
+
+    .exploreButton {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .Benefits-image {
+        max-width: 280px;
+    }
+
+    .Benefits-image-h h4 {
+        font-size: 1.1rem;
+        padding-bottom: 20px;
+    }
+
+    .Benefits-h-p h5 {
+        font-size: 1rem;
+        margin-top: 25px;
+    }
+
+    .Benefits-h-p p {
+        font-size: 0.85rem;
+    }
+
+    .ExploreCards {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .ExploreCards h4 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+
+    .ExploreCards p {
+        font-size: 0.85rem;
+    }
+
+    .Explore-heading {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+        margin-top: 40px;
+    }
 }

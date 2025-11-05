@@ -5,7 +5,7 @@ function Rightsection({ heading, description, image, learnMore }) {
     <div>
       <div className="container LeftSection">
         <div className="row d-flex align-items-center justify-content-evenly">
-          <div className="col-4 LeftSectionContent">
+          <div className="col-12 col-md-6 col-lg-4 LeftSectionContent mb-4 mb-lg-0 order-2 order-lg-1">
             <h3>{heading}</h3>
             <p>{description}</p>
             <span>
@@ -15,7 +15,7 @@ function Rightsection({ heading, description, image, learnMore }) {
             </span>
           </div>
 
-          <div className="col-5 productImage">
+          <div className="col-12 col-md-6 col-lg-5 productImage order-1 order-lg-2">
             <a href="#">
               <img src={image} alt="Kite image" />
             </a>

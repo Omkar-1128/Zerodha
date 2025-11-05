@@ -8,7 +8,7 @@ function Explore() {
           Explore different account types
         </h3>
         <div className="row d-flex justify-content-center">
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
             <div className="ExploreCards">
               <h4>Individual Account</h4>
               <p>Invest in equity, mutual funds and derivatives</p>
@@ -18,7 +18,7 @@ function Explore() {
               <p>Invest in equity, mutual funds and derivatives</p>
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
             <div className="ExploreCards">
               <h4>Individual Account</h4>
               <p>Invest in equity, mutual funds and derivatives</p>
@@ -28,7 +28,7 @@ function Explore() {
               <p>Invest in equity, mutual funds and derivatives</p>
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
             <div className="ExploreCards">
               <h4>Individual Account</h4>
               <p>Invest in equity, mutual funds and derivatives</p>

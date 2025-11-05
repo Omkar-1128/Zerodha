@@ -14,7 +14,7 @@ function Hero() {
       </div>
 
       <div className="row d-flex justify-content-evenly">
-        <div className="col-xl-4">
+        <div className="col-12 col-md-6 col-xl-4 mb-4 mb-xl-0">
           <img
             className="HeroImage"
             height={351}
@@ -23,7 +23,7 @@ function Hero() {
             alt=""
           />
         </div>
-        <div className="col-xl-4">
+        <div className="col-12 col-md-6 col-xl-4">
           <h3 className="accountHeading">Signup now</h3>
           <p className="accountDescription">
             Or track your existing application

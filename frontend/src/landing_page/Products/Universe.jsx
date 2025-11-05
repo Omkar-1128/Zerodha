@@ -23,7 +23,7 @@ function Universe() {
         </div>
 
         <div className="row justify-content-center p-5 text-center align-items-center text-muted">
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
             <img
               style={{ height: "55px" }}
               className="mb-3"
@@ -35,7 +35,7 @@ function Universe() {
               transparent index funds to help you save for your goals.
             </p>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
             <img
               style={{ width: "80%", height: "55px" }}
               className="mb-3"
@@ -48,7 +48,7 @@ function Universe() {
               and more.
             </p>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
             <img
               style={{ height: "55px" }}
               className="mb-3"
@@ -63,7 +63,7 @@ function Universe() {
         </div>
 
         <div className="row justify-content-center p-5 text-center align-items-center text-muted">
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
             <img
               style={{ height: "55px" }}
               className="mb-3"
@@ -75,7 +75,7 @@ function Universe() {
               strategies without coding.
             </p>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
             <img
               style={{ height: "55px" }}
               className="mb-3"
@@ -87,7 +87,7 @@ function Universe() {
               baskets of stocks on ETFs.
             </p>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
             <img
               style={{ height: "55px" }}
               className="mb-3"

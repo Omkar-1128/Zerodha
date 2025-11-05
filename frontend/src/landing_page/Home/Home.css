@@ -1,6 +1,7 @@
 .HeroImg {
     width: 799.8px;
-    height: 335.6px;
+    height: auto;
+    max-width: 100%;
 }
 
 .HeroContainer {
@@ -11,9 +12,9 @@
 }
 
 .EcosystemImage {
-    height: 611.2px;
     width: 622.45px;
-    
+    height: auto;
+    max-width: 100%;
 }
 
 .StatsText h3{
@@ -41,6 +42,8 @@
     margin-bottom: 15px;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .EcosystemLinks a {
@@ -53,6 +56,8 @@
 .PressLogos {
     margin-top: 60px;
     margin-bottom: 120px;
+    max-width: 100%;
+    height: auto;
 }
 
 .PricingContent p{
@@ -92,4 +97,127 @@
 .EducationContainer {
     padding-bottom: 100px;
     align-items: center;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .HeroImg {
+        width: 100%;
+        height: auto;
+    }
+
+    .HeroContainer {
+        margin-bottom: 40px !important;
+        margin-top: 40px !important;
+    }
+
+    .EcosystemImage {
+        width: 100%;
+        height: auto;
+    }
+
+    .StatsText {
+        margin-bottom: 30px;
+    }
+
+    .StatsText h3 {
+        margin-bottom: 25px;
+        font-size: 1.5rem;
+    }
+
+    .StatsContent p {
+        margin-bottom: 24px;
+        font-size: 0.9rem;
+    }
+
+    .EcosystemLinks {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .EcosystemLinks a {
+        font-size: 0.9rem;
+    }
+
+    .PressLogos {
+        margin-top: 40px;
+        margin-bottom: 60px;
+        width: 100%;
+    }
+
+    .PricingContent {
+        margin-bottom: 30px;
+    }
+
+    .PricingContent h3 {
+        font-size: 1.5rem;
+    }
+
+    .PricingContent p {
+        font-size: 0.9rem;
+    }
+
+    .PricingRupee {
+        font-size: 45px;
+    }
+
+    .PricingContainer {
+        padding-bottom: 60px;
+    }
+
+    .EducationContainer {
+        padding-bottom: 60px;
+    }
+
+    .StatsContentLinks {
+        font-size: 0.9rem;
+    }
+
+    .PricingContent a {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .PricingContainer .col-6 {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .HeroContainer {
+        margin-bottom: 30px !important;
+        margin-top: 30px !important;
+    }
+
+    .StatsText h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .StatsContent p {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    .PricingContent h3 {
+        font-size: 1.3rem;
+    }
+
+    .PricingRupee {
+        font-size: 35px;
+    }
+
+    .PressLogos {
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .PricingContainer {
+        padding-bottom: 40px;
+    }
+
+    .EducationContainer {
+        padding-bottom: 40px;
+    }
 }
