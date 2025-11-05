@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=5174",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -18,12 +18,14 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.13.1",
+    "axios": "^1.13.2",
     "chart.js": "^4.4.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
+    "react-cookie": "^8.0.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.2",
+    "react-toastify": "^11.0.5",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

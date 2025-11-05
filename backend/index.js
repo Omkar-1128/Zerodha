@@ -5,6 +5,8 @@ import { PositionModel } from "./model/PositionModel.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { router } from "./Routes/AuthRoute.js";
+import { OrderModel } from "./model/OrderModel.js"
+import { orderRouter } from "./Routes/OrderRoute.js";
 import cors from "cors";
 
 const app = express();
@@ -20,14 +22,22 @@ app.use(cookieParser());
 //   })
 // );
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",      // <-- exact origin of your frontend (no wildcard)
-    credentials: true,                    // <-- allow cookies to be sent
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+const whitelist = ["http://localhost:5173", "http://localhost:5174"];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // allow requests with no origin (e.g. Postman) OR whitelisted origins
+    if (!origin || whitelist.includes(origin)) return callback(null, true);
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
+// app.options("*", cors(corsOptions)); // handle preflight
+
+
 // app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -63,6 +73,8 @@ app.get("/getPositions", async (req, res) => {
   let allPositions = await PositionModel.find();
   res.json(allPositions);
 });
+
+app.use("/" , orderRouter);
 
 app.get("/", (req, res) => {
   res.send("<h1> Welcome to Zerodha World </h1>");

@@ -1,0 +1,25 @@
+{
+  "name": "zerodha",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "workspaces": ["frontend", "dashboard", "backend"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace frontend\" \"npm run dev --workspace dashboard -- --port=5174\" \"npm run dev --workspace backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Omkar-1128/Zerodha.git"
+  },
+  "keywords": [],
+  "author": "Omkar Shelke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Omkar-1128/Zerodha/issues"
+  },
+  "homepage": "https://github.com/Omkar-1128/Zerodha#readme",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

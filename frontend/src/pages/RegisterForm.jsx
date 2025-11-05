@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import "./style.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
 export default function RegisterForm() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     fullname: "",
     mobileNo: "",
@@ -109,7 +110,8 @@ export default function RegisterForm() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/Home");
+          window.location.href = "http://localhost:5174/";
+          // navigate("/Home");
         }, 1000);
       } else {
         handleError(message);
