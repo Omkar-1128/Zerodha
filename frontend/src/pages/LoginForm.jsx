@@ -66,7 +66,7 @@ export default function LoginForm() {
 
     try {
       const { data } = await axios.post(
-        "https://zerodha-onfe.onrender.com//login",
+        "https://zerodha-onfe.onrender.com/login",
         {
           ...inputValue,
         },
@@ -77,7 +77,7 @@ export default function LoginForm() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "https://storied-hamster-46f20c.netlify.app/";
+          window.location.href = "https://storied-hamster-46f20c.netlify.app";
           // navigate("/Home");
         }, 1000);
       } else {
