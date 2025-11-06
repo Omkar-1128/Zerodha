@@ -1,6 +1,7 @@
 import { HoldingModel } from "./model/HoldingModel.js";
-import { holdings ,positions} from "../Dashboard/src/data/data.js";
+import { holdings ,positions, watchlist} from "../Dashboard/src/data/data.js";
 import { PositionModel } from "./model/PositionModel.js";
+import { WatchlistModel } from "./model/WatchlistModel.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
@@ -41,6 +42,18 @@ async function addPositionsdata() {
     }
 };
 
-addHoldingData();
+async function addWatchlistdata() {
+    try {
+        await WatchlistModel.deleteMany({});
+        await WatchlistModel.insertMany(watchlist)
+        console.log("Watchlist data saved to dataBase")
+    } catch (e) {
+        console.log("Error: " + e)
+    }
+};
 
-addPositionsdata();
+// addHoldingData();
+
+// addPositionsdata();
+
+addWatchlistdata();
