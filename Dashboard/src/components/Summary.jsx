@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import "./Summary.css"
-import { useCookies } from "react-cookie";
 import { API_BASE_URL } from "../config/api.js";
 
 const INR = (n) =>
@@ -21,7 +20,6 @@ const isToday = (d) => {
 };
 
 const Summary = () => {
-  const [cookies] = useCookies(["token"]);
   const [username, setUsername] = useState("");
 
   const [holdings, setHoldings] = useState([]);
@@ -33,12 +31,8 @@ const Summary = () => {
   useEffect(() => {
     (async () => {
       try {
-        if (!cookies.token) {
-          setLoading(false);
-          return;
-        }
-
-        // verify user
+        // Cookie is httpOnly, so we can't check it directly
+        // Always try to verify - cookie will be sent automatically with withCredentials: true
         const ver = await axios.post(
           `${API_BASE_URL}/verify`,
           {},

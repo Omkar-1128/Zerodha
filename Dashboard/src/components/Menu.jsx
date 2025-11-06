@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import "./TopMenu.css";
@@ -9,10 +9,9 @@ import { API_BASE_URL } from "../config/api.js";
 
 function Menu() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [selectedMenu, setSelectedMenu] = useState(0);
-  const [cookies, removeCookie] = useCookies(["token"]);
+  const [, removeCookie] = useCookies(["token"]);
   const [username, setUsername] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -37,29 +36,31 @@ function Menu() {
 
   useEffect(() => {
     const verifyCookie = async () => {
-      if (!cookies.token) {
-        window.location.href = "https://zerodha-272.netlify.app";
-        return;
-      }
       try {
+        // Always try to verify - cookie is httpOnly so we can't check it directly
+        // It will be sent automatically with withCredentials: true
         const { data } = await axios.post(
           `${API_BASE_URL}/verify`,
           {},
           { withCredentials: true }
         );
         const { status, user } = data || {};
-        setUsername(user);
-        if (!status) {
+        if (status && user) {
+          setUsername(user);
+        } else {
+          // Verification failed - redirect to login
           removeCookie("token");
           window.location.href = "https://zerodha-272.netlify.app/Login";
         }
-      } catch {
+      } catch (error) {
+        // Network error or verification failed - redirect to login
+        console.error("Verification error:", error);
         removeCookie("token");
         window.location.href = "https://zerodha-272.netlify.app/Login";
       }
     };
     verifyCookie();
-  }, [cookies, removeCookie, navigate]);
+  }, [removeCookie]);
 
   const Logout = () => {
     removeCookie("token");
