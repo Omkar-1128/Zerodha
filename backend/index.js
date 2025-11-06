@@ -17,45 +17,44 @@ dotenv.config();
 
 const app = express();
 
-// ===== CORS (allow Netlify, local dev, and handle preflight) =====
+/* ===================== CORS (SIMPLE & RELIABLE) ===================== */
+// Allow our Netlify app and localhost, echo others, and include credentials.
 const allowedOrigins = [
-  "https://courageous-lamington-58f1b4.netlify.app", // frontend
-  "https://storied-hamster-46f20c.netlify.app",      // dashboard
+  /\.netlify\.app$/,
+  "https://courageous-lamington-58f1b4.netlify.app",
+  "https://astonishing-panda-8254a4.netlify.app/",
   "http://localhost:5173",
   "http://localhost:5174",
-  "http://localhost:3000"
+  "http://localhost:3000",
 ];
 
-// optionally allow all Netlify preview subdomains
-const isAllowed = (origin) => {
-  if (!origin) return true; // allow server-to-server, Postman, curl, etc.
-  if (allowedOrigins.includes(origin)) return true;
-  try {
-    const u = new URL(origin);
-    if (u.hostname.endsWith(".netlify.app")) return true; // preview deploys
-  } catch (_) {}
-  return false;
-};
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.some((o) => (o instanceof RegExp ? o.test(origin) : o === origin))) {
+        return callback(null, true);
+      }
+      // fallback: allow for now; tighten if needed
+      return callback(null, true);
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+    exposedHeaders: ["Set-Cookie"],
+  })
+);
+app.options("*", cors());
 
-const corsOptions = {
-  origin: (origin, cb) => (isAllowed(origin) ? cb(null, true) : cb(new Error("Not allowed by CORS"))),
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // respond to all preflight requests
-
-// ===== Parsers / cookies =====
+/* ===================== Parsers / Cookies / Proxy ===================== */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// behind reverse proxy (Render) so cookies with `secure: true` work correctly
+// Behind reverse proxy (Render) so secure cookies work
 app.set("trust proxy", 1);
 
-// ===== Database =====
+/* ===================== Database ===================== */
 const DB_URL = process.env.atlas_url;
 async function main() {
   await mongoose.connect(DB_URL);
@@ -67,11 +66,10 @@ main()
     console.log("Error: " + e);
   });
 
-// ===== Health check (optional, useful on Render) =====
+/* ===================== Health Check ===================== */
 app.get("/health", (_req, res) => res.status(200).send("ok"));
 
-// ===== API Endpoints =====
-
+/* ===================== API Endpoints ===================== */
 // Holdings
 app.get("/getHoldings", async (_req, res) => {
   const allHoldings = await HoldingModel.find();
@@ -102,16 +100,16 @@ app.get("/watchlist", async (_req, res) => {
   res.json(allWatchlist);
 });
 
-// Order routes & auth routes
+/* ===================== Routers ===================== */
 app.use("/", orderRouter);
 app.use("/", router);
 
-// Root
+/* ===================== Root ===================== */
 app.get("/", (_req, res) => {
   res.send("<h1> Welcome to Zerodha World </h1>");
 });
 
-// ===== Start server (bind 0.0.0.0 for Render) =====
+/* ===================== Start Server ===================== */
 const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
   console.log(`Listening on http://0.0.0.0:${port}`);
