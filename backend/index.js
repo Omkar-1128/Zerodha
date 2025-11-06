@@ -24,7 +24,7 @@ app.use(cookieParser());
 //   })
 // );
 
-const whitelist = ["http://localhost:5173", "http://localhost:5174"];
+const whitelist = ["courageous-lamington-58f1b4.netlify.app", "http://localhost:5174"];
 
 const corsOptions = {
   origin: function (origin, callback) {

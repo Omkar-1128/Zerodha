@@ -8,7 +8,7 @@ const TopBar = () => {
   const sensex = { points: 100.2, pct: -0.12 };
 
   const openWatchlist = () => {
-    try { window.dispatchEvent(new CustomEvent("openWatchlist")); } catch {}
+    try { window.dispatchEvent(new CustomEvent("openWatchlist")); } catch (e) {console.log(e)}
   };
 
   return (

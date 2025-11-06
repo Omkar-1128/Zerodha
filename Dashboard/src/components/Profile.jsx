@@ -14,7 +14,7 @@ function Profile({ username, Logout }) {
     setIsLoading(true);
     setError("");
     try {
-      const res = await fetch("http://localhost:8080/getUserDetails", {
+      const res = await fetch("https://zerodha-onfe.onrender.com/getUserDetails", {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

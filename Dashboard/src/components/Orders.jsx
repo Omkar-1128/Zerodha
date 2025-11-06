@@ -8,7 +8,7 @@ const Orders = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/orders")
+      .get("https://zerodha-onfe.onrender.com/orders")
       .then((res) => {
         const sortedOrders = res.data.sort(
           (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
