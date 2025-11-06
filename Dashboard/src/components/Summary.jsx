@@ -67,7 +67,7 @@ const Summary = () => {
         setLoading(false);
       }
     })();
-  }, [cookies]);
+  }, []); // Empty dependency array - run once on mount
 
   // ---- derived metrics ----
   const {
