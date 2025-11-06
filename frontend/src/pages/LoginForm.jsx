@@ -66,7 +66,7 @@ export default function LoginForm() {
 
     try {
       const { data } = await axios.post(
-        "https://zerodha-onfe.onrender.com/login",
+        `${import.meta.env.VITE_API_URL}/login`,
         {
           ...inputValue,
         },
