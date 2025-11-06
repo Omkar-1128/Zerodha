@@ -18,11 +18,32 @@ dotenv.config();
 const app = express();
 
 /* ===================== CORS (SIMPLE & RELIABLE) ===================== */
-// Echo back the requesting Origin and allow credentials (cookies).
-// Put this BEFORE any routes or other middleware that sends responses.
-app.use(cors({ origin: true, credentials: true }));
-app.options("*", cors());      // handle all preflight requests
-app.options("/login", cors()); // (belt & suspenders) ensure OPTIONS /login works
+// Allow our Netlify app and localhost, echo others, and include credentials.
+const allowedOrigins = [
+  /\.netlify\.app$/,
+  "https://courageous-lamington-58f1b4.netlify.app",
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:3000",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.some((o) => (o instanceof RegExp ? o.test(origin) : o === origin))) {
+        return callback(null, true);
+      }
+      // fallback: allow for now; tighten if needed
+      return callback(null, true);
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+    exposedHeaders: ["Set-Cookie"],
+  })
+);
+app.options("*", cors());
 
 /* ===================== Parsers / Cookies / Proxy ===================== */
 app.use(express.json());
