@@ -5,6 +5,7 @@ import axios from "axios";
 import "./TopMenu.css";
 import Profile from "./Profile";
 import MobileNavDrawer from "./MobileNavDrawer";
+import { API_BASE_URL } from "../config/api.js";
 
 function Menu() {
   const location = useLocation();
@@ -37,12 +38,12 @@ function Menu() {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        window.location.href = "storied-hamster-46f20c.netlify.app";
+        window.location.href = "https://cosmic-starburst-935c6b.netlify.app";
         return;
       }
       try {
         const { data } = await axios.post(
-          "https://zerodha-onfe.onrender.com/verify",
+          `${API_BASE_URL}/verify`,
           {},
           { withCredentials: true }
         );
@@ -50,11 +51,11 @@ function Menu() {
         setUsername(user);
         if (!status) {
           removeCookie("token");
-          window.location.href = "courageous-lamington-58f1b4.netlify.app/login";
+          window.location.href = "https://cosmic-starburst-935c6b.netlify.app/Login";
         }
       } catch {
         removeCookie("token");
-        window.location.href = "courageous-lamington-58f1b4.netlify.app/login";
+        window.location.href = "https://cosmic-starburst-935c6b.netlify.app/Login";
       }
     };
     verifyCookie();
@@ -62,7 +63,7 @@ function Menu() {
 
   const Logout = () => {
     removeCookie("token");
-    window.location.href = "courageous-lamington-58f1b4.netlify.app/Register";
+    window.location.href = "https://cosmic-starburst-935c6b.netlify.app/Register";
   };
 
   const pillClass = (idx) => `menu-pill ${selectedMenu === idx ? "is-active" : ""}`;

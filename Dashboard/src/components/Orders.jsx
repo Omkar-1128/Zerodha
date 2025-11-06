@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Orders.css";
+import { API_BASE_URL } from "../config/api.js";
 
 const Orders = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://zerodha-onfe.onrender.com/orders")
+      .get(`${API_BASE_URL}/orders`)
       .then((res) => {
         const sortedOrders = res.data.sort(
           (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)

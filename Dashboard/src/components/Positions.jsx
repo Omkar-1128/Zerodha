@@ -3,12 +3,13 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api.js";
 
 const Positions = () => {
   let [allPositions , setAllPositions] = useState([]);
 
   useEffect(() => {
-    axios.get("https://zerodha-onfe.onrender.com/getPositions").then((res) => {
+    axios.get(`${API_BASE_URL}/getPositions`).then((res) => {
       setAllPositions(res.data);
     })
   } , [])

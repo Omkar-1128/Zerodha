@@ -14,10 +14,12 @@ import "react-toastify/dist/ReactToastify.css";
 // ⬇️ ensure your old CSS is imported (this often fixes “lost styles”)
 import "./watchlist.css"; // <-- add/keep your old stylesheet here
 
+import { API_BASE_URL } from "../config/api.js";
+
 // === Configuration ===
 const SYMBOLS = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN"];
 const API_KEY = import.meta.env.VITE_TWELVE_API_KEY;
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://zerodha-onfe.onrender.com";
+const BACKEND_URL = API_BASE_URL;
 
 // two-decimal formatter (keeps UX consistent)
 const formatPrice = (n, locale = "en-US") =>

@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Holding.css";
 import VerticalBarChart from "./VerticleBarChart";
 import Modal from "./Modal";
+import { API_BASE_URL } from "../config/api.js";
 
 const INR = (n) =>
   typeof n === "number" && Number.isFinite(n)
@@ -18,7 +19,7 @@ const Holdings = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://zerodha-onfe.onrender.com/getHoldings", { withCredentials: true })
+      .get(`${API_BASE_URL}/getHoldings`, { withCredentials: true })
       .then((res) => {
         const arr = Array.isArray(res.data) ? res.data : [];
         setAllHoldings(arr);

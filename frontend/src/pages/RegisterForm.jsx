@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api.js";
 
 export default function RegisterForm() {
   // const navigate = useNavigate();
@@ -102,7 +103,7 @@ export default function RegisterForm() {
 
     try {
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/Register`,
+        `${API_BASE_URL}/Register`,
         {
           ...inputValue,
         },
@@ -112,7 +113,7 @@ export default function RegisterForm() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "https://astonishing-panda-8254a4.netlify.app";
+          window.location.href = "https://dashboard-272.netlify.app";
           // navigate("/Home");
         }, 1000);
       } else {

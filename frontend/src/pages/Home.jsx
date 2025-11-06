@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { API_BASE_URL } from "../config/api.js";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Home = () => {
         navigate("/Home");
       }
       const { data } = await axios.post(
-        "https://zerodha-onfe.onrender.com/verify",
+        `${API_BASE_URL}/verify`,
         {},
         { withCredentials: true }
       );
@@ -24,13 +25,13 @@ const Home = () => {
         ? toast(`Hello ${user}`, {
             position: "top-right",
           })
-        : (removeCookie("token"), navigate("/login"));
+        : (removeCookie("token"), navigate("/Login"));
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
   const Logout = () => {
     removeCookie("token");
-    navigate("/signup");
+    navigate("/Register");
   };
   return (
     <>

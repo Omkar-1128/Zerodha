@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import "./Summary.css"
 import { useCookies } from "react-cookie";
+import { API_BASE_URL } from "../config/api.js";
 
 const INR = (n) =>
   typeof n === "number" && !Number.isNaN(n)
@@ -39,7 +40,7 @@ const Summary = () => {
 
         // verify user
         const ver = await axios.post(
-          "https://zerodha-onfe.onrender.com/verify",
+          `${API_BASE_URL}/verify`,
           {},
           { withCredentials: true }
         );
@@ -47,13 +48,13 @@ const Summary = () => {
 
         // fetch data in parallel
         const [hRes, pRes, oRes] = await Promise.all([
-          axios.get("https://zerodha-onfe.onrender.com/getHoldings", {
+          axios.get(`${API_BASE_URL}/getHoldings`, {
             withCredentials: true,
           }),
-          axios.get("https://zerodha-onfe.onrender.com/getPositions", {
+          axios.get(`${API_BASE_URL}/getPositions`, {
             withCredentials: true,
           }),
-          axios.get("https://zerodha-onfe.onrender.com/orders", {
+          axios.get(`${API_BASE_URL}/orders`, {
             withCredentials: true,
           }),
         ]);

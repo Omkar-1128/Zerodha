@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { API_BASE_URL } from "../config/api.js";
 
 export default function LoginForm() {
   // const navigate = useNavigate();
@@ -66,7 +67,7 @@ export default function LoginForm() {
 
     try {
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/login`,
+        `${API_BASE_URL}/login`,
         {
           ...inputValue,
         },
@@ -77,7 +78,7 @@ export default function LoginForm() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "https://astonishing-panda-8254a4.netlify.app";
+          window.location.href = "https://dashboard-272.netlify.app";
           // navigate("/Home");
         }, 1000);
       } else {

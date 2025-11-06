@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Modal from "./Modal";
 import "./Profile.css"; // ⬅️ add this line
+import { API_BASE_URL } from "../config/api.js";
 
 function Profile({ username, Logout }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -14,7 +15,7 @@ function Profile({ username, Logout }) {
     setIsLoading(true);
     setError("");
     try {
-      const res = await fetch("https://zerodha-onfe.onrender.com/getUserDetails", {
+      const res = await fetch(`${API_BASE_URL}/getUserDetails`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
