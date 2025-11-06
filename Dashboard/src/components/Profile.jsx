@@ -10,6 +10,28 @@ function Profile({ username, Logout }) {
   const [error, setError] = useState("");
   const dropdownRef = useRef(null);
 
+  const fetchUserDetails = async () => {
+    setIsLoading(true);
+    setError("");
+    try {
+      const res = await fetch("http://localhost:8080/getUserDetails", {
+        method: "GET",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) throw new Error("Failed to fetch user details");
+      const data = await res.json();
+      const u = Array.isArray(data) ? data[0] ?? null : data?.user ?? data ?? null;
+      if (!u) throw new Error("No user found");
+      setUserDetails(u);
+    } catch (e) {
+      setError(e?.message || "Unable to load user details");
+      setUserDetails(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleProfileClick = () => setIsDropdownOpen(!isDropdownOpen);
 
   useEffect(() => {
@@ -20,6 +42,16 @@ function Profile({ username, Logout }) {
     };
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
+  // Allow mobile drawer to open profile modal via event
+  useEffect(() => {
+    const openProfile = () => {
+      setIsProfileOpen(true);
+      fetchUserDetails();
+    };
+    window.addEventListener("openProfileModal", openProfile);
+    return () => window.removeEventListener("openProfileModal", openProfile);
   }, []);
 
   return (
@@ -47,25 +79,7 @@ function Profile({ username, Logout }) {
               onClick={async () => {
                 setIsDropdownOpen(false);
                 setIsProfileOpen(true);
-                setIsLoading(true);
-                setError("");
-                try {
-                  const res = await fetch("http://localhost:8080/getUserDetails", {
-                    method: "GET",
-                    credentials: "include",
-                    headers: { "Content-Type": "application/json" },
-                  });
-                  if (!res.ok) throw new Error("Failed to fetch user details");
-                  const data = await res.json();
-                  const u = Array.isArray(data) ? data[0] ?? null : data?.user ?? data ?? null;
-                  if (!u) throw new Error("No user found");
-                  setUserDetails(u);
-                } catch (e) {
-                  setError(e?.message || "Unable to load user details");
-                  setUserDetails(null);
-                } finally {
-                  setIsLoading(false);
-                }
+                await fetchUserDetails();
               }}
             >
               <i className="fa-solid fa-user me-2" /> Profile

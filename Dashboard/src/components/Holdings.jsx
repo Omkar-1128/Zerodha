@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import "./Holding.css";
 import VerticalBarChart from "./VerticleBarChart";
+import Modal from "./Modal";
 
 const INR = (n) =>
   typeof n === "number" && Number.isFinite(n)
@@ -12,6 +13,7 @@ const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+  const [isChartOpen, setIsChartOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -136,8 +138,21 @@ const Holdings = () => {
         </div>
       </div>
 
-      {/* bar chart */}
-      <VerticalBarChart data={data} />
+      {/* bar chart - desktop inline */}
+      <div className="chart-container hide-on-mobile">
+        <VerticalBarChart data={data} />
+      </div>
+
+      {/* mobile: button to open graph */}
+      <button className="mobile-chart-btn show-on-mobile" onClick={() => setIsChartOpen(true)} aria-label="View holdings graph">
+        View graph
+      </button>
+
+      <Modal isOpen={isChartOpen} onClose={() => setIsChartOpen(false)} title="Holdings">
+        <div className="chart-container">
+          <VerticalBarChart data={data} compact />
+        </div>
+      </Modal>
     </>
   );
 };

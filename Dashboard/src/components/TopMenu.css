@@ -83,7 +83,7 @@
 /* ========== Menu (logo + nav + profile) ========== */
 .menu-container {
   display: flex;
-  align-items:end !important;
+  align-items: center;
   gap: 14px;
 }
 
@@ -187,5 +187,17 @@
   .index { font-size: 12px; }
   .index-points { font-size: 12px; }
   .percent { font-size: 11px; }
-  .menu-logo { display: none; } /* hide logo on very small screens to save space */
+.menu-logo { display: inline-flex; }
 }
+
+/* Force mobile nav behavior for ≤ 768px */
+@media (max-width: 768px) {
+  .menus { display: none !important; }
+  .menu-container { justify-content: space-between; width: 100%; }
+  .hamburger { display: inline-flex !important; align-items:center; justify-content:center; gap:2px; }
+  .hamburger span { background: var(--text); }
+  .menu-profile { display: none !important; }
+}
+
+/* Always keep profile visible on the right */
+.menu-profile { margin-left: auto; display: inline-flex; align-items: center; }
