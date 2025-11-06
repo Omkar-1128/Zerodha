@@ -37,12 +37,12 @@ function Menu() {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        window.location.href = "http://localhost:5174/";
+        window.location.href = "storied-hamster-46f20c.netlify.app";
         return;
       }
       try {
         const { data } = await axios.post(
-          "http://localhost:8080/verify",
+          "https://zerodha-onfe.onrender.com/verify",
           {},
           { withCredentials: true }
         );
@@ -50,11 +50,11 @@ function Menu() {
         setUsername(user);
         if (!status) {
           removeCookie("token");
-          window.location.href = "http://localhost:5173/login";
+          window.location.href = "courageous-lamington-58f1b4.netlify.app/login";
         }
       } catch {
         removeCookie("token");
-        window.location.href = "http://localhost:5173/login";
+        window.location.href = "courageous-lamington-58f1b4.netlify.app/login";
       }
     };
     verifyCookie();
@@ -62,7 +62,7 @@ function Menu() {
 
   const Logout = () => {
     removeCookie("token");
-    window.location.href = "http://localhost:5173/Register";
+    window.location.href = "courageous-lamington-58f1b4.netlify.app/Register";
   };
 
   const pillClass = (idx) => `menu-pill ${selectedMenu === idx ? "is-active" : ""}`;

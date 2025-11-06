@@ -14,7 +14,7 @@ const Home = () => {
         navigate("/Home");
       }
       const { data } = await axios.post(
-        "http://localhost:8080/verify",
+        "https://zerodha-onfe.onrender.com//verify",
         {},
         { withCredentials: true }
       );

@@ -17,7 +17,7 @@ import "./watchlist.css"; // <-- add/keep your old stylesheet here
 // === Configuration ===
 const SYMBOLS = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN"];
 const API_KEY = import.meta.env.VITE_TWELVE_API_KEY;
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://zerodha-onfe.onrender.com";
 
 // two-decimal formatter (keeps UX consistent)
 const formatPrice = (n, locale = "en-US") =>

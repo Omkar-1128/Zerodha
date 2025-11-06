@@ -18,7 +18,7 @@ const Holdings = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:8080/getHoldings", { withCredentials: true })
+      .get("https://zerodha-onfe.onrender.com/getHoldings", { withCredentials: true })
       .then((res) => {
         const arr = Array.isArray(res.data) ? res.data : [];
         setAllHoldings(arr);

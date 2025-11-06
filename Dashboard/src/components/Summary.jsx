@@ -39,7 +39,7 @@ const Summary = () => {
 
         // verify user
         const ver = await axios.post(
-          "http://localhost:8080/verify",
+          "https://zerodha-onfe.onrender.com/verify",
           {},
           { withCredentials: true }
         );
@@ -47,13 +47,13 @@ const Summary = () => {
 
         // fetch data in parallel
         const [hRes, pRes, oRes] = await Promise.all([
-          axios.get("http://localhost:8080/getHoldings", {
+          axios.get("https://zerodha-onfe.onrender.com/getHoldings", {
             withCredentials: true,
           }),
-          axios.get("http://localhost:8080/getPositions", {
+          axios.get("https://zerodha-onfe.onrender.com/getPositions", {
             withCredentials: true,
           }),
-          axios.get("http://localhost:8080/orders", {
+          axios.get("https://zerodha-onfe.onrender.com/orders", {
             withCredentials: true,
           }),
         ]);
