@@ -15,6 +15,22 @@ import { orderRouter } from "./Routes/OrderRoute.js";
 
 dotenv.config();
 
+// Validate required environment variables
+const requiredEnvVars = {
+  atlas_url: process.env.atlas_url,
+  TOKEN_KEY: process.env.TOKEN_KEY,
+};
+
+const missingVars = Object.entries(requiredEnvVars)
+  .filter(([_, value]) => !value)
+  .map(([key]) => key);
+
+if (missingVars.length > 0) {
+  console.error("❌ Missing required environment variables:", missingVars.join(", "));
+  console.error("Please set these in your Render environment variables.");
+  process.exit(1);
+}
+
 const app = express();
 
 /* ===================== CORS (SIMPLE & RELIABLE) ===================== */
@@ -22,7 +38,7 @@ const app = express();
 const allowedOrigins = [
   /\.netlify\.app$/,
   "https://courageous-lamington-58f1b4.netlify.app",
-  "https://astonishing-panda-8254a4.netlify.app/",
+  "https://astonishing-panda-8254a4.netlify.app",
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:3000",
@@ -56,15 +72,22 @@ app.set("trust proxy", 1);
 
 /* ===================== Database ===================== */
 const DB_URL = process.env.atlas_url;
-async function main() {
-  await mongoose.connect(DB_URL);
+async function connectDatabase() {
+  try {
+    if (!DB_URL) {
+      throw new Error("Database URL is not defined");
+    }
+    await mongoose.connect(DB_URL);
+    console.log("✅ Connected to Database");
+  } catch (error) {
+    console.error("❌ Database connection error:", error.message);
+    console.error("⚠️  Server will continue to run, but database operations will fail.");
+    // Don't exit - let the server start even if DB fails
+  }
 }
-main()
-  .then(() => console.log("Connected to Database"))
-  .catch((e) => {
-    console.log("DataBase connection error");
-    console.log("Error: " + e);
-  });
+
+// Connect to database (non-blocking)
+connectDatabase();
 
 /* ===================== Health Check ===================== */
 app.get("/health", (_req, res) => res.status(200).send("ok"));
@@ -111,6 +134,13 @@ app.get("/", (_req, res) => {
 
 /* ===================== Start Server ===================== */
 const port = process.env.PORT || 8080;
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Listening on http://0.0.0.0:${port}`);
-});
+
+try {
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`🚀 Server listening on http://0.0.0.0:${port}`);
+    console.log(`📡 Environment: ${process.env.NODE_ENV || "development"}`);
+  });
+} catch (error) {
+  console.error("❌ Failed to start server:", error);
+  process.exit(1);
+}
