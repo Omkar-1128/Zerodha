@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 export default function RegisterForm() {
   // const navigate = useNavigate();
