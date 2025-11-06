@@ -1,90 +1,111 @@
-import React, { useState } from "react";
-import {Link} from 'react-router-dom';
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import Profile from "./Profile";
+import "./TopMenu.css";
 
 function Menu() {
-  const [selectedMenu , setSelectedMenu] = useState(0);
-
-  const handleMenuClicks = (index) => {
-    setSelectedMenu(index);
-  }
-
-  const menuClass = "menu";
-  const activeMenuClass = "menu selected";
-
+  const location = useLocation();
   const navigate = useNavigate();
-    const [cookies, removeCookie] = useCookies(["token"]);
-    const [username, setUsername] = useState("");
-    useEffect(() => {
-      const verifyCookie = async () => {
-        if (!cookies.token) {
-          // navigate("/Home");
-          window.location.href = "http://localhost:5174/";
-        }
+
+  const [selectedMenu, setSelectedMenu] = useState(0);
+  const [cookies, removeCookie] = useCookies(["token"]);
+  const [username, setUsername] = useState("");
+
+  // map route → active index
+  useEffect(() => {
+    const path = location.pathname || "/";
+    const map = {
+      "/": 0,
+      "/orders": 1,
+      "/holdings": 2,
+      "/positions": 3,
+      "/funds": 4,
+      "/apps": 5,
+    };
+    setSelectedMenu(map[path] ?? 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        window.location.href = "http://localhost:5174/";
+        return;
+      }
+      try {
         const { data } = await axios.post(
           "http://localhost:8080/verify",
           {},
           { withCredentials: true }
         );
-        const { status, user } = data;
+        const { status, user } = data || {};
         setUsername(user);
-        return status
-          ? null
-          : (removeCookie("token"), window.location.href = "http://localhost:5173/login");
-      };
-      verifyCookie();
-    }, [cookies, navigate, removeCookie]);
-    const Logout = () => {
-      removeCookie("token");
-      // navigate("/signup");
-      window.location.href = "http://localhost:5173/Register";
+        if (!status) {
+          removeCookie("token");
+          window.location.href = "http://localhost:5173/login";
+        }
+      } catch {
+        removeCookie("token");
+        window.location.href = "http://localhost:5173/login";
+      }
     };
+    verifyCookie();
+  }, [cookies, removeCookie, navigate]);
+
+  const Logout = () => {
+    removeCookie("token");
+    window.location.href = "http://localhost:5173/Register";
+  };
+
+  const pillClass = (idx) => `menu-pill ${selectedMenu === idx ? "is-active" : ""}`;
 
   return (
     <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} />
+      <span className="menu-logo">
+        <img src="logo.png" alt="Logo" />
+      </span>
+
       <div className="menus">
         <ul>
           <li>
-            <Link to={"/"} style={{textDecoration: "none"}} onClick={() => handleMenuClicks(0)}>
-              <p className={selectedMenu === 0? menuClass : activeMenuClass}>Dashboard</p>
-            </Link>  
+            <Link to="/" className={pillClass(0)} aria-current={selectedMenu === 0 ? "page" : undefined}>
+              Dashboard
+            </Link>
           </li>
           <li>
-            <Link to={"/orders"} style={{textDecoration: "none"}} onClick={() => handleMenuClicks(1)}>
-              <p className={selectedMenu === 1? menuClass : activeMenuClass}>Orders</p>
-            </Link>  
+            <Link to="/orders" className={pillClass(1)} aria-current={selectedMenu === 1 ? "page" : undefined}>
+              Orders
+            </Link>
           </li>
           <li>
-            <Link to={"/holdings"} style={{textDecoration: "none"}} onClick={() => handleMenuClicks(2)}>
-              <p className={selectedMenu === 2? menuClass : activeMenuClass}>Holdings</p>
-            </Link>  
+            <Link to="/holdings" className={pillClass(2)} aria-current={selectedMenu === 2 ? "page" : undefined}>
+              Holdings
+            </Link>
           </li>
           <li>
-            <Link to={"/positions"} style={{textDecoration: "none"}} onClick={() => handleMenuClicks(3)}>
-              <p className={selectedMenu === 3? menuClass : activeMenuClass}>Positions</p>
-            </Link>  
+            <Link to="/positions" className={pillClass(3)} aria-current={selectedMenu === 3 ? "page" : undefined}>
+              Positions
+            </Link>
           </li>
-           <li>
-            <Link to={"/funds"} style={{textDecoration: "none"}} onClick={() => handleMenuClicks(4)}>
-              <p className={selectedMenu === 4? menuClass : activeMenuClass}>Funds</p>
-            </Link>  
+          <li>
+            <Link to="/funds" className={pillClass(4)} aria-current={selectedMenu === 4 ? "page" : undefined}>
+              Funds
+            </Link>
           </li>
-           <li>
-            <Link to={"/apps"} style={{textDecoration: "none"}} onClick={() => handleMenuClicks(5)}>
-              <p className={selectedMenu === 5? menuClass : activeMenuClass}>Apps</p>
-            </Link>  
+          <li>
+            <Link to="/apps" className={pillClass(5)} aria-current={selectedMenu === 5 ? "page" : undefined}>
+              Apps
+            </Link>
           </li>
         </ul>
+
         <hr />
-        < Profile username={username} Logout={Logout}/>
+
+        <Profile username={username} Logout={Logout} />
       </div>
     </div>
   );
-};
+}
 
 export default Menu;

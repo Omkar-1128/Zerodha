@@ -1,0 +1,233 @@
+/* Container for trigger + dropdown */
+.prof-wrap {
+  position: relative;
+  display: inline-block;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Trigger button */
+.prof-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 6px 6px;
+  border: 1px solid #e7e9ee;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: box-shadow 140ms ease, transform 120ms ease, border-color 140ms;
+  user-select: none;
+}
+
+.prof-trigger:hover {
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.08);
+  border-color: #dfe3ea;
+}
+
+.prof-trigger:active {
+  transform: translateY(1px);
+}
+
+/* Small avatar */
+.prof-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(56, 126, 209, 0.35);
+  background: linear-gradient(135deg, #387ed1 0%, #5aa8ff 100%);
+}
+
+/* Username + caret */
+.prof-username {
+  font-weight: 650;
+  font-size: 14px;
+  color: #1f2937;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.prof-caret {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Dropdown menu */
+.prof-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  padding: 6px;
+  width: 180px;
+  background: #fff;
+  border: 1px solid #e7e9ee;
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba(16, 24, 40, 0.12);
+  z-index: 9999;
+  list-style: none;
+}
+
+.prof-menu-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: #1f2937;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.prof-menu-item:hover {
+  background: #f5f7fb;
+}
+
+.prof-menu-item.danger {
+  color: #c62828;
+}
+.prof-menu-item.danger:hover {
+  background: #fde8e8;
+}
+
+/* Modal content */
+.prof-card {
+  background: #ffffff;
+  border: 1px solid #eef0f5;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 14px 36px rgba(16, 24, 40, 0.08);
+}
+
+/* Header row */
+.prof-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* Large avatar */
+.prof-avatar-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(56, 126, 209, 0.35);
+  background: linear-gradient(135deg, #387ed1 0%, #5aa8ff 100%);
+}
+
+/* Name + badge */
+.prof-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prof-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.prof-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef6ff;
+  color: #2563eb;
+  width: fit-content;
+}
+
+/* Info grid */
+.prof-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  row-gap: 10px;
+  column-gap: 16px;
+  align-items: baseline;
+}
+
+.prof-grid .label {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.prof-grid .value {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.prof-grid .value.ok {
+  color: #2e7d32;
+}
+
+/* States */
+.prof-loading {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.prof-error {
+  color: #c62828;
+  background: #fdecec;
+  border: 1px solid #f8c9c9;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .prof-grid {
+    grid-template-columns: 1fr;
+  }
+  .prof-wrap { width: 100%; }
+  .prof-trigger { width: 100%; justify-content: space-between; }
+  .prof-menu { width: 100%; }
+}
+
+
+/* --- Force Profile dropdown to be vertical --- */
+.menus .prof-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 4px;
+}
+
+/* Each option on its own line, full width */
+.menus .prof-menu li {
+  display: block !important;
+  width: 100%;
+}
+
+/* Make sure the button fills the row */
+.menus .prof-menu .prof-menu-item {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* Neutralize any pill styles from nav */
+.menus .prof-menu .prof-menu-item,
+.menus .prof-menu .prof-menu-item:hover {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}

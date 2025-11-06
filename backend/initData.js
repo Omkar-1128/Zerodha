@@ -52,8 +52,8 @@ async function addWatchlistdata() {
     }
 };
 
-// addHoldingData();
+addHoldingData();
 
-// addPositionsdata();
+addPositionsdata();
 
 addWatchlistdata();
