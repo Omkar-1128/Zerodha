@@ -77,7 +77,7 @@ export default function LoginForm() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "https://storied-hamster-46f20c.netlify.app";
+          window.location.href = "https://astonishing-panda-8254a4.netlify.app";
           // navigate("/Home");
         }, 1000);
       } else {
