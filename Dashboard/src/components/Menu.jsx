@@ -35,8 +35,14 @@ function Menu() {
   }, [location.pathname]);
 
   useEffect(() => {
-    const verifyCookie = async () => {
+    const verifyCookie = async (retryCount = 0) => {
       try {
+        // Delay on first attempt to allow cross-site cookie to be set after redirect
+        // Cross-site cookies need time to be processed by the browser
+        if (retryCount === 0) {
+          await new Promise(resolve => setTimeout(resolve, 1500));
+        }
+        
         // Always try to verify - cookie is httpOnly so we can't check it directly
         // It will be sent automatically with withCredentials: true
         const { data } = await axios.post(
@@ -48,15 +54,27 @@ function Menu() {
         if (status && user) {
           setUsername(user);
         } else {
-          // Verification failed - redirect to login
+          // Verification failed - if first attempt, retry once more
+          if (retryCount === 0) {
+            console.log("Verification failed, retrying...");
+            setTimeout(() => verifyCookie(1), 1000);
+          } else {
+            // Second attempt also failed - redirect to login
+            removeCookie("token");
+            window.location.href = "https://zerodha-272.netlify.app/Login";
+          }
+        }
+      } catch (error) {
+        // Network error - if first attempt, retry once more
+        if (retryCount === 0) {
+          console.log("Verification error, retrying...", error);
+          setTimeout(() => verifyCookie(1), 1000);
+        } else {
+          // Second attempt also failed - redirect to login
+          console.error("Verification error after retry:", error);
           removeCookie("token");
           window.location.href = "https://zerodha-272.netlify.app/Login";
         }
-      } catch (error) {
-        // Network error or verification failed - redirect to login
-        console.error("Verification error:", error);
-        removeCookie("token");
-        window.location.href = "https://zerodha-272.netlify.app/Login";
       }
     };
     verifyCookie();

@@ -31,6 +31,9 @@ const Summary = () => {
   useEffect(() => {
     (async () => {
       try {
+        // Small delay to allow cross-site cookie to be set after redirect
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
         // Cookie is httpOnly, so we can't check it directly
         // Always try to verify - cookie will be sent automatically with withCredentials: true
         const ver = await axios.post(
