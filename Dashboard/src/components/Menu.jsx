@@ -37,7 +37,7 @@ function Menu() {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        window.location.href = "http://localhost:5174/";
+        window.location.href = "storied-hamster-46f20c.netlify.app";
         return;
       }
       try {
