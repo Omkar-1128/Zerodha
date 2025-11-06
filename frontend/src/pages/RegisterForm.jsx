@@ -102,7 +102,7 @@ export default function RegisterForm() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/Register",
+        "https://zerodha-onfe.onrender.com//Register",
         {
           ...inputValue,
         },
