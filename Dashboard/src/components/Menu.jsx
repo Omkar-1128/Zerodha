@@ -14,6 +14,7 @@ function Menu() {
   const [, removeCookie] = useCookies(["token"]);
   const [username, setUsername] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(true);
 
   const toggleNavDrawer = () => {
     window.dispatchEvent(new CustomEvent("closeWatchlist"));
@@ -40,38 +41,54 @@ function Menu() {
         // Delay on first attempt to allow cross-site cookie to be set after redirect
         // Cross-site cookies need time to be processed by the browser
         if (retryCount === 0) {
-          await new Promise(resolve => setTimeout(resolve, 1500));
+          await new Promise(resolve => setTimeout(resolve, 2000));
         }
+        
+        console.log(`🔍 Verification attempt ${retryCount + 1}...`);
         
         // Always try to verify - cookie is httpOnly so we can't check it directly
         // It will be sent automatically with withCredentials: true
         const { data } = await axios.post(
           `${API_BASE_URL}/verify`,
           {},
-          { withCredentials: true }
+          { 
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
         );
+        
+        console.log("✅ Verification response:", data);
         const { status, user } = data || {};
+        
         if (status && user) {
+          console.log("✅ Verification successful for:", user);
           setUsername(user);
+          setIsVerifying(false);
         } else {
           // Verification failed - if first attempt, retry once more
           if (retryCount === 0) {
-            console.log("Verification failed, retrying...");
-            setTimeout(() => verifyCookie(1), 1000);
+            console.warn("⚠️ Verification failed, retrying in 2 seconds...");
+            setTimeout(() => verifyCookie(1), 2000);
           } else {
             // Second attempt also failed - redirect to login
+            console.error("❌ Verification failed after retry - redirecting to login");
+            setIsVerifying(false);
             removeCookie("token");
             window.location.href = "https://zerodha-272.netlify.app/Login";
           }
         }
       } catch (error) {
         // Network error - if first attempt, retry once more
+        console.error(`❌ Verification error (attempt ${retryCount + 1}):`, error.response?.data || error.message);
         if (retryCount === 0) {
-          console.log("Verification error, retrying...", error);
-          setTimeout(() => verifyCookie(1), 1000);
+          console.warn("⚠️ Retrying verification in 2 seconds...");
+          setTimeout(() => verifyCookie(1), 2000);
         } else {
           // Second attempt also failed - redirect to login
-          console.error("Verification error after retry:", error);
+          console.error("❌ Verification failed after retry - redirecting to login");
+          setIsVerifying(false);
           removeCookie("token");
           window.location.href = "https://zerodha-272.netlify.app/Login";
         }
@@ -79,6 +96,23 @@ function Menu() {
     };
     verifyCookie();
   }, [removeCookie]);
+
+  // Show loading state while verifying
+  if (isVerifying) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        flexDirection: 'column',
+        gap: '10px'
+      }}>
+        <div>Verifying authentication...</div>
+        <div style={{ fontSize: '14px', color: '#666' }}>Please wait</div>
+      </div>
+    );
+  }
 
   const Logout = () => {
     removeCookie("token");

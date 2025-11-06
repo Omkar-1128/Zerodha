@@ -3,7 +3,8 @@ import { createSecretToken } from "../util/SecretToken.js";
 import bcrypt from "bcryptjs";
 
 // choose cookie options based on environment
-const isProd = process.env.NODE_ENV === "production";
+// Render sets NODE_ENV=production, but we also check for Render-specific env vars
+const isProd = process.env.NODE_ENV === "production" || !!process.env.RENDER;
 
 /**
  * Cross-site cookie rules:
@@ -16,6 +17,7 @@ const cookieOptions = {
   sameSite: isProd ? "none" : "lax",  // "none" required for cross-site
   path: "/",                          // send on all routes
   maxAge: 7 * 24 * 60 * 60 * 1000,    // 7 days
+  // Don't set domain - let browser handle it for cross-site cookies
 };
 
 export const Signup = async (req, res) => {
@@ -45,6 +47,14 @@ export const Signup = async (req, res) => {
 
     const token = createSecretToken(user._id);
     res.cookie("token", token, cookieOptions);
+    
+    // Log cookie setting for debugging
+    console.log("Cookie set for signup - Options:", {
+      httpOnly: cookieOptions.httpOnly,
+      secure: cookieOptions.secure,
+      sameSite: cookieOptions.sameSite,
+      path: cookieOptions.path,
+    });
 
     return res.status(201).json({
       success: true,
@@ -87,6 +97,14 @@ export const Login = async (req, res) => {
 
     const token = createSecretToken(user._id);
     res.cookie("token", token, cookieOptions);
+    
+    // Log cookie setting for debugging
+    console.log("Cookie set for login - Options:", {
+      httpOnly: cookieOptions.httpOnly,
+      secure: cookieOptions.secure,
+      sameSite: cookieOptions.sameSite,
+      path: cookieOptions.path,
+    });
 
     return res.status(200).json({
       success: true,
