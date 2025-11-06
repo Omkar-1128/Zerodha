@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import { router } from "./Routes/AuthRoute.js";
 import { OrderModel } from "./model/OrderModel.js"
 import { orderRouter } from "./Routes/OrderRoute.js";
+import { WatchlistModel } from "./model/WatchlistModel.js"
 import cors from "cors";
 
 const app = express();
@@ -79,6 +80,14 @@ app.get("/orders" , async (req , res) => {
   let allOrders = await OrderModel.find();
   res.json(allOrders)
 })
+
+// API for watchlist
+
+app.get("/watchlist" , async (req , res) => {
+  let allWatchlist = await WatchlistModel.find();
+  res.json(allWatchlist)
+})
+
 
 app.use("/" , orderRouter);
 

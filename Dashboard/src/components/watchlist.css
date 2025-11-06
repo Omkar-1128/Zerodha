@@ -1,0 +1,35 @@
+/* Watchlist core */
+.watchlist-container { }
+.search-container { display:flex; align-items:center; gap:8px; }
+.search { padding:8px 10px; border:1px solid #ccc; border-radius:6px; }
+.counts { color:#666; font-size:14px; }
+.list { list-style:none; padding:0; margin:0; }
+.item { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-bottom:1px solid #eee; }
+.itemInfo { display:flex; align-items:center; gap:8px; }
+.up { color:#1a7f37; }
+.down { color:#d32f2f; }
+
+/* Action strip + buttons */
+.actions { display:inline-flex; gap:8px; margin-left:8px; }
+button.buy,
+button.sell,
+button.action,
+button.confirm-btn {
+  border:none;
+  border-radius:6px;
+  padding:6px 10px;
+  font-weight:600;
+  cursor:pointer;
+  transition: transform .08s ease, box-shadow .2s ease, opacity .2s;
+}
+button.buy { background:#13b46b; color:#fff; }
+button.buy:hover { transform:translateY(-1px); box-shadow:0 2px 8px rgba(19,180,107,.3); }
+
+button.sell { background:#ef4444; color:#fff; }
+button.sell:hover { transform:translateY(-1px); box-shadow:0 2px 8px rgba(239,68,68,.3); }
+
+button.action { background:#f3f4f6; color:#111; }
+button.action:hover { background:#e5e7eb; }
+
+button.confirm-btn { background:#4caf50; color:#fff; padding:10px 14px; }
+button:disabled { opacity:.6; cursor:not-allowed; }

@@ -111,10 +111,7 @@ export default function LoginForm() {
               className="FormContainer d-flex flex-column justify-content-center"
               style={{ height: "70vh" }}
             >
-              <div className="mb-4">
-                <h3 className="mb-2">Login</h3>
-                <p style={{ color: "#666666", fontSize: "14px" }}>Welcome back! Please login to your account.</p>
-              </div>
+              <h3 style={{ marginBottom: "25px" }}>Login</h3>
 
               <div className="form-floating mb-3">
                 <input

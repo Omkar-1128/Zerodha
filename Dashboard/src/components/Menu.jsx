@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { toast } from "react-toastify";
 import axios from "axios";
 import Profile from "./Profile";
 
@@ -34,9 +33,7 @@ function Menu() {
         const { status, user } = data;
         setUsername(user);
         return status
-          ? toast(`Hello ${user}`, {
-              position: "top-right",
-            })
+          ? null
           : (removeCookie("token"), window.location.href = "http://localhost:5173/login");
       };
       verifyCookie();
