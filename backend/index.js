@@ -60,7 +60,8 @@ app.use(
     exposedHeaders: ["Set-Cookie"],
   })
 );
-app.options("*", cors());
+// Note: app.options("*", cors()) removed - Express 5.x doesn't support "*" wildcard
+// The global CORS middleware above already handles OPTIONS requests automatically
 
 /* ===================== Parsers / Cookies / Proxy ===================== */
 app.use(express.json());
@@ -77,7 +78,10 @@ async function connectDatabase() {
     if (!DB_URL) {
       throw new Error("Database URL is not defined");
     }
-    await mongoose.connect(DB_URL);
+    await mongoose.connect(DB_URL, {
+      serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+      socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
+    });
     console.log("✅ Connected to Database");
   } catch (error) {
     console.error("❌ Database connection error:", error.message);
@@ -95,32 +99,57 @@ app.get("/health", (_req, res) => res.status(200).send("ok"));
 /* ===================== API Endpoints ===================== */
 // Holdings
 app.get("/getHoldings", async (_req, res) => {
-  const allHoldings = await HoldingModel.find();
-  res.json(allHoldings);
+  try {
+    const allHoldings = await HoldingModel.find();
+    res.json(allHoldings);
+  } catch (error) {
+    console.error("Error fetching holdings:", error);
+    res.status(500).json({ error: "Failed to fetch holdings" });
+  }
 });
 
 // Positions
 app.get("/getPositions", async (_req, res) => {
-  const allPositions = await PositionModel.find();
-  res.json(allPositions);
+  try {
+    const allPositions = await PositionModel.find();
+    res.json(allPositions);
+  } catch (error) {
+    console.error("Error fetching positions:", error);
+    res.status(500).json({ error: "Failed to fetch positions" });
+  }
 });
 
 // Orders
 app.get("/orders", async (_req, res) => {
-  const allOrders = await OrderModel.find();
-  res.json(allOrders);
+  try {
+    const allOrders = await OrderModel.find();
+    res.json(allOrders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ error: "Failed to fetch orders" });
+  }
 });
 
 // Users
 app.get("/getUserDetails", async (_req, res) => {
-  const userDetails = await User.find();
-  res.json(userDetails);
+  try {
+    const userDetails = await User.find();
+    res.json(userDetails);
+  } catch (error) {
+    console.error("Error fetching user details:", error);
+    res.status(500).json({ error: "Failed to fetch user details" });
+  }
 });
 
 // Watchlist
 app.get("/watchlist", async (_req, res) => {
-  const allWatchlist = await WatchlistModel.find();
-  res.json(allWatchlist);
+  try {
+    const allWatchlist = await WatchlistModel.find();
+    res.json(allWatchlist);
+  } catch (error) {
+    console.error("Error fetching watchlist:", error);
+    res.status(500).json({ error: "Failed to fetch watchlist" });
+  }
 });
 
 /* ===================== Routers ===================== */
