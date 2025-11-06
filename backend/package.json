@@ -7,7 +7,7 @@
   "author": "Omkar Shelke",
   "license": "ISC",
   "scripts": {
-    "start": "node index.js",        
+    "start": "nodemon index.js",        
     "dev": "nodemon index.js"
   },
   "engines": {
