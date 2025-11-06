@@ -1,0 +1,191 @@
+/* ========== Light theme tokens ========== */
+:root {
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --border: #e6e9f0;
+  --shadow-sm: 0 6px 18px rgba(16,24,40,.06);
+  --shadow-md: 0 14px 36px rgba(16,24,40,.10);
+
+  --accent: #2563eb;
+
+  --up: #118d57;
+  --up-bg: #e9f7ee;
+  --down: #d32f2f;
+  --down-bg: #fdecec;
+}
+
+/* ========== TopBar container (sticky, light) ========== */
+.topbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Inner layout: indices left, menu right */
+.topbar-container > .topbar-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+}
+
+/* ========== Indices strip (NIFTY/SENSEX) ========== */
+.indices-container {
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+  min-height: 40px;
+}
+
+.index-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.index {
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: .2px;
+  margin: 0;
+}
+
+.index-points {
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.percent {
+  font-weight: 700;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin: 0;
+}
+
+.percent.up   { background: var(--up-bg);   color: var(--up); }
+.percent.down { background: var(--down-bg); color: var(--down); }
+
+/* ========== Menu (logo + nav + profile) ========== */
+.menu-container {
+  display: flex;
+  align-items:end !important;
+  gap: 14px;
+}
+
+/* Logo */
+.menu-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  margin-right: 100px;
+}
+
+.menu-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Horizontal nav */
+.menus {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menus ul {
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 4px;
+}
+
+/* Pills */
+.menu-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background .16s ease, border-color .16s ease, box-shadow .16s ease, transform .06s ease;
+}
+
+.menu-pill:hover {
+  background: #f3f6ff;
+  border-color: #d7def0;
+  box-shadow: var(--shadow-sm);
+}
+
+.menu-pill.is-active {
+  background: #eff4ff;
+  color: var(--accent);
+  border-color: #cbdafc;
+}
+
+/* Vertical divider between nav and profile */
+.menus hr {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  height: 24px;
+  width: 1px;
+  background: var(--border);
+  border: 0;
+  margin: 0 6px;
+}
+
+/* Profile component sits to the right; no extra styles here to avoid conflicts */
+
+/* ========== Responsive ========== */
+@media (max-width: 960px) {
+  .topbar-container > .topbar-inner {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+  }
+  .indices-container {
+    order: 2;
+    flex-wrap: wrap;
+  }
+  .menu-container {
+    order: 1;
+    justify-content: space-between;
+  }
+  .menus ul {
+    gap: 2px;
+  }
+  .menu-pill { padding: 7px 10px; font-size: 13px; }
+}
+
+@media (max-width: 640px) {
+  .index-card { padding: 6px 10px; }
+  .index { font-size: 12px; }
+  .index-points { font-size: 12px; }
+  .percent { font-size: 11px; }
+  .menu-logo { display: none; } /* hide logo on very small screens to save space */
+}

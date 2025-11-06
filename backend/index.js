@@ -8,6 +8,7 @@ import { router } from "./Routes/AuthRoute.js";
 import { OrderModel } from "./model/OrderModel.js"
 import { orderRouter } from "./Routes/OrderRoute.js";
 import { WatchlistModel } from "./model/WatchlistModel.js"
+import { User } from "./model/UserModel.js"
 import cors from "cors";
 
 const app = express();
@@ -79,6 +80,11 @@ app.get("/getPositions", async (req, res) => {
 app.get("/orders" , async (req , res) => {
   let allOrders = await OrderModel.find();
   res.json(allOrders)
+})
+
+app.get("/getUserDetails" , async (req , res) => {
+  let userDetails = await User.find();
+  res.json(userDetails)
 })
 
 // API for watchlist

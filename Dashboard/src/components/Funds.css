@@ -1,0 +1,183 @@
+/* -------- Tokens (light theme) -------- */
+:root {
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --border: #e6e9f0;
+  --shadow-sm: 0 6px 18px rgba(16,24,40,.06);
+  --shadow-md: 0 14px 36px rgba(16,24,40,.08);
+  --blue: #2563eb;
+  --blue-soft: #eff4ff;
+  --green: #118d57;
+  --green-soft: #e9f7ee;
+}
+
+/* -------- Top banner (UPI blurb + buttons) -------- */
+.funds {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin: 10px 0 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.funds p {
+  margin: 0;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .16s ease, background .16s, border-color .16s;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn-green {
+  background: var(--green);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.btn-green:hover { box-shadow: var(--shadow-md); }
+
+.btn-blue {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.btn-blue:hover { box-shadow: var(--shadow-md); }
+
+/* -------- Two-column area under banner -------- */
+/* target only the first .row following .funds to avoid global conflicts */
+.funds + .row {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+/* columns */
+.funds + .row .col {
+  flex: 1;
+  min-width: 280px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+}
+
+/* Section title inside first card */
+.funds + .row .col > span p {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* -------- Ledger-style table (the div.table you have) -------- */
+.table {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Each line */
+.table .data {
+  display: grid;
+  grid-template-columns: 1fr auto; /* label | value */
+  gap: 12px;
+  padding: 10px 12px;
+  align-items: baseline;
+  background: #fff;
+}
+
+.table .data:not(:last-of-type) {
+  border-bottom: 1px solid #f1f3f6;
+}
+
+.table .data p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.table .data p.imp {
+  color: var(--text);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.table .data p.imp.colored {
+  color: var(--green);
+  background: var(--green-soft);
+  padding: 2px 8px;
+  border-radius: 999px;
+  justify-self: end;
+}
+
+/* Internal divider rows */
+.table hr {
+  height: 1px;
+  border: 0;
+  background: var(--border);
+  margin: 0;
+}
+
+/* -------- Commodity card -------- */
+.commodity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+}
+
+.commodity p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.commodity .btn-blue {
+  padding: 8px 12px;
+}
+
+/* -------- Responsive -------- */
+@media (max-width: 640px) {
+  .funds {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  .funds + .row .col {
+    min-width: 100%;
+    border-radius: 14px;
+  }
+  .table .data {
+    padding: 10px;
+  }
+}

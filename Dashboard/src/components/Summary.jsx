@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
+import "./Summary.css"
 import { useCookies } from "react-cookie";
 
 const INR = (n) =>
@@ -126,7 +127,7 @@ const Summary = () => {
   }
 
   return (
-    <>
+    <div className="summary-root">
       <div className="username">
         <h6>Hi, {username || "User"}!</h6>
         <hr className="divider" />
@@ -231,7 +232,7 @@ const Summary = () => {
         </div>
         <hr className="divider" />
       </div>
-    </>
+    </div>
   );
 };
 

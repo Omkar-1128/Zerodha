@@ -850,3 +850,76 @@ hr {
 .profile-item :hover {
   color: #dc3545;
 }
+
+/* Responsive: Mobile-first enhancements without changing desktop layout */
+@media (max-width: 768px) {
+  .topbar-container {
+    position: sticky;
+    top: 0;
+    height: 56px;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .indices-container,
+  .watchlist-container,
+  .content,
+  .menu-container {
+    flex-basis: 100%;
+    width: 100%;
+    height: auto;
+    padding: 12px;
+  }
+
+  .menus li {
+    margin-right: 16px;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .col {
+    flex-basis: 100%;
+  }
+
+  .data {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .order-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .order-table table {
+    min-width: 640px;
+  }
+
+  .search {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    height: auto;
+  }
+
+  .watchlist-number {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+    border: none;
+    padding: 12px;
+  }
+
+  .watchlist-number ul li {
+    padding: 8px 12px;
+  }
+}
+
+
