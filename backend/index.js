@@ -37,7 +37,7 @@ const app = express();
 // Allow our Netlify app and localhost, echo others, and include credentials.
 const allowedOrigins = [
   /\.netlify\.app$/,
-  "https://cosmic-starburst-935c6b.netlify.app",
+  "https://zerodha-272.netlify.app",
   "https://dashboard-272.netlify.app",
   "http://localhost:5173",
   "http://localhost:5174",

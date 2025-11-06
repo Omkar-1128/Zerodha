@@ -10,7 +10,7 @@
   - `PORT` - Auto-set by Render
 
 - [x] **CORS Configuration:**
-  - ✅ Frontend: `https://cosmic-starburst-935c6b.netlify.app`
+  - ✅ Frontend: `https://zerodha-272.netlify.app`
   - ✅ Dashboard: `https://dashboard-272.netlify.app`
   - ✅ Regex pattern for all `.netlify.app` domains
   - ✅ Credentials enabled
@@ -24,7 +24,7 @@
   - ✅ Database connection error handling
   - ✅ All API endpoints have try-catch blocks
 
-### Frontend (Netlify - cosmic-starburst-935c6b.netlify.app)
+### Frontend (Netlify - zerodha-272.netlify.app)
 - [x] **API Configuration:**
   - ✅ Centralized config: `src/config/api.js`
   - ✅ Fallback URL: `https://zerodha-onfe.onrender.com`
@@ -62,9 +62,9 @@
   - ✅ WatchList.jsx - API call
 
 - [x] **Redirects:**
-  - ✅ No token → `https://cosmic-starburst-935c6b.netlify.app`
-  - ✅ Invalid token → `https://cosmic-starburst-935c6b.netlify.app/Login`
-  - ✅ Logout → `https://cosmic-starburst-935c6b.netlify.app/Register`
+  - ✅ No token → `https://zerodha-272.netlify.app`
+  - ✅ Invalid token → `https://zerodha-272.netlify.app/Login`
+  - ✅ Logout → `https://zerodha-272.netlify.app/Register`
 
 - [x] **Build Configuration:**
   - ✅ Build command: `npm run build`
@@ -100,7 +100,7 @@ npm run build
 - [ ] `dist/` folder contains `index.html` and `assets/`
 - [ ] Deploy to Netlify
 - [ ] Set environment variable `VITE_API_URL` (optional - has fallback)
-- [ ] Verify site loads at `https://cosmic-starburst-935c6b.netlify.app`
+- [ ] Verify site loads at `https://zerodha-272.netlify.app`
 
 ### 3. Dashboard (Netlify)
 ```bash

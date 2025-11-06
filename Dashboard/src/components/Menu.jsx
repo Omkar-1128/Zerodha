@@ -38,7 +38,7 @@ function Menu() {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        window.location.href = "https://cosmic-starburst-935c6b.netlify.app";
+        window.location.href = "https://zerodha-272.netlify.app";
         return;
       }
       try {
@@ -51,11 +51,11 @@ function Menu() {
         setUsername(user);
         if (!status) {
           removeCookie("token");
-          window.location.href = "https://cosmic-starburst-935c6b.netlify.app/Login";
+          window.location.href = "https://zerodha-272.netlify.app/Login";
         }
       } catch {
         removeCookie("token");
-        window.location.href = "https://cosmic-starburst-935c6b.netlify.app/Login";
+        window.location.href = "https://zerodha-272.netlify.app/Login";
       }
     };
     verifyCookie();
@@ -63,7 +63,7 @@ function Menu() {
 
   const Logout = () => {
     removeCookie("token");
-    window.location.href = "https://cosmic-starburst-935c6b.netlify.app/Register";
+    window.location.href = "https://zerodha-272.netlify.app/Register";
   };
 
   const pillClass = (idx) => `menu-pill ${selectedMenu === idx ? "is-active" : ""}`;
