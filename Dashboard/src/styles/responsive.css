@@ -1,0 +1,30 @@
+/* Mobile-specific rules and shared drawer styles */
+
+@media (max-width: 768px) {
+  /* Hide top tickers (moved into watchlist drawer) */
+  .topbar-container .indices-container { display: none !important; }
+
+  /* Drawer base sizes and z-index policy */
+  .drawer-overlay { z-index: 1100 !important; }
+  .drawer { width: min(84vw, 320px); z-index: 1110 !important; }
+  .drawer--full { width: 100% !important; max-width: 100% !important; }
+
+  /* Sticky header inside watchlist drawer */
+  .wl-tickers { position: sticky; top: 0; z-index: 2; backdrop-filter: blur(8px); background: rgba(255,255,255,.85); padding: 8px 12px; border-bottom: 1px solid #eee; display: flex; gap: 10px; overflow-x: auto; }
+  .wl-ticker { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid #e5e7eb; border-radius: 999px; background: #fff; }
+  .wl-ticker .index { font-weight: 700; color: #111; }
+}
+
+/* Generic helpers */
+.hide-on-mobile { }
+.show-on-mobile { display: none; }
+
+@media (max-width: 768px) {
+  .hide-on-mobile { display: none !important; }
+  .show-on-mobile { display: inline-flex !important; }
+}
+
+.chart-container { width: 100%; min-height: 280px; }
+.chart-container canvas { width: 100% !important; height: auto !important; }
+
+

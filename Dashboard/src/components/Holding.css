@@ -172,3 +172,24 @@
     min-width: 720px; /* enable horizontal scroll on small screens */
   }
 }
+
+/* Mobile chart button */
+.mobile-chart-btn {
+  display: none;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+  padding: 10px 14px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(16,24,40,.12);
+}
+
+@media (max-width: 768px) {
+  .mobile-chart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    float: right;
+    margin-top: 12px;
+  }
+}

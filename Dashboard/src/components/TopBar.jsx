@@ -7,11 +7,15 @@ const TopBar = () => {
   const nifty = { points: 100.2, pct: 0.45 };
   const sensex = { points: 100.2, pct: -0.12 };
 
+  const openWatchlist = () => {
+    try { window.dispatchEvent(new CustomEvent("openWatchlist")); } catch {}
+  };
+
   return (
     <div className="topbar-container">
       <div className="topbar-inner">
         <div className="indices-container">
-          <div className="index-card">
+          <div className="index-card" role="button" tabIndex={0} onClick={openWatchlist} onKeyDown={(e) => { if (e.key === "Enter") openWatchlist(); }}>
             <p className="index">NIFTY 50</p>
             <p className="index-points">{nifty.points}</p>
             <p className={`percent ${nifty.pct >= 0 ? "up" : "down"}`}>
@@ -20,7 +24,7 @@ const TopBar = () => {
             </p>
           </div>
 
-          <div className="index-card">
+          <div className="index-card" role="button" tabIndex={0} onClick={openWatchlist} onKeyDown={(e) => { if (e.key === "Enter") openWatchlist(); }}>
             <p className="index">SENSEX</p>
             <p className="index-points">{sensex.points}</p>
             <p className={`percent ${sensex.pct >= 0 ? "up" : "down"}`}>

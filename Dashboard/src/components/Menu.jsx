@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import Profile from "./Profile";
 import "./TopMenu.css";
+import Profile from "./Profile";
+import MobileNavDrawer from "./MobileNavDrawer";
 
 function Menu() {
   const location = useLocation();
@@ -12,6 +13,12 @@ function Menu() {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [cookies, removeCookie] = useCookies(["token"]);
   const [username, setUsername] = useState("");
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNavDrawer = () => {
+    window.dispatchEvent(new CustomEvent("closeWatchlist"));
+    setIsNavOpen((v) => !v);
+  };
 
   // map route → active index
   useEffect(() => {
@@ -65,6 +72,13 @@ function Menu() {
       <span className="menu-logo">
         <img src="logo.png" alt="Logo" />
       </span>
+      <button
+        className="menu-toggle"
+        onClick={toggleNavDrawer}
+        aria-label="Open Menu"
+      >
+        <i className="fa-solid fa-bars"></i>
+      </button>
 
       <div className="menus">
         <ul>
@@ -101,9 +115,17 @@ function Menu() {
         </ul>
 
         <hr />
-
+      </div>
+      {/* Visible on desktop; hidden on mobile via CSS */}
+      <div className="menu-profile">
         <Profile username={username} Logout={Logout} />
       </div>
+      <MobileNavDrawer
+        open={isNavOpen}
+        onClose={() => setIsNavOpen(false)}
+        username={username}
+        onLogout={Logout}
+      />
     </div>
   );
 }
