@@ -41,13 +41,26 @@ function Menu() {
         console.log("🔍 Verifying authentication...");
         console.log("🔍 API Base URL:", API_BASE_URL);
         
+        // Get token from localStorage (cross-site compatible)
+        const token = localStorage.getItem('authToken');
+        console.log("🔍 Token from localStorage:", token ? "Present" : "Missing");
+        
+        if (!token) {
+          console.error("❌ No token found in localStorage");
+          setIsVerifying(false);
+          removeCookie("token");
+          window.location.href = "https://zerodha-os.netlify.app/Login";
+          return;
+        }
+        
         const { data } = await axios.post(
           `${API_BASE_URL}/verify`,
           {},
           { 
             withCredentials: true,
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}` // Send token in header
             }
           }
         );
@@ -62,12 +75,14 @@ function Menu() {
         } else {
           console.error("❌ Verification failed - no valid session");
           setIsVerifying(false);
+          localStorage.removeItem('authToken');
           removeCookie("token");
           window.location.href = "https://zerodha-os.netlify.app/Login";
         }
       } catch (error) {
         console.error("❌ Verification error:", error.response?.data || error.message);
         setIsVerifying(false);
+        localStorage.removeItem('authToken');
         removeCookie("token");
         window.location.href = "https://zerodha-os.netlify.app/Login";
       }
@@ -93,6 +108,7 @@ function Menu() {
   }
 
   const Logout = () => {
+    localStorage.removeItem('authToken');
     removeCookie("token");
     window.location.href = "https://zerodha-os.netlify.app/Register";
   };

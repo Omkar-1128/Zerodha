@@ -46,6 +46,8 @@ export const Signup = async (req, res) => {
     });
 
     const token = createSecretToken(user._id);
+    
+    // Set cookie for same-site requests (backward compatibility)
     res.cookie("token", token, cookieOptions);
     
     // Log cookie setting for debugging
@@ -56,9 +58,11 @@ export const Signup = async (req, res) => {
       path: cookieOptions.path,
     });
 
+    // ALSO return token in response body for cross-site usage
     return res.status(201).json({
       success: true,
       message: "User signed up successfully",
+      token: token, // Add token to response
       user: {
         id: user._id,
         fullname: user.fullname,
@@ -96,6 +100,8 @@ export const Login = async (req, res) => {
     }
 
     const token = createSecretToken(user._id);
+    
+    // Set cookie for same-site requests (backward compatibility)
     res.cookie("token", token, cookieOptions);
     
     // Log cookie setting for debugging
@@ -106,9 +112,11 @@ export const Login = async (req, res) => {
       path: cookieOptions.path,
     });
 
+    // ALSO return token in response body for cross-site usage
     return res.status(200).json({
       success: true,
       message: "User logged in successfully",
+      token: token, // Add token to response
       user: {
         id: user._id,
         fullname: user.fullname,

@@ -74,8 +74,13 @@ export default function LoginForm() {
         { withCredentials: true }
       );
       console.log(data);
-      const { success, message } = data;
+      const { success, message, token } = data;
       if (success) {
+        // Store token in localStorage for cross-site access
+        if (token) {
+          localStorage.setItem('authToken', token);
+          console.log("✅ Token stored in localStorage");
+        }
         handleSuccess(message);
         setTimeout(() => {
           window.location.href = "https://dashboard-os.netlify.app";

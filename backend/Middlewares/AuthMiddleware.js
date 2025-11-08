@@ -9,14 +9,25 @@ export const userVerification = (req, res) => {
   console.log("Verification request - Origin:", req.headers.origin);
   console.log("Verification request - Headers:", {
     cookie: req.headers.cookie,
+    authorization: req.headers.authorization,
     origin: req.headers.origin,
     referer: req.headers.referer
   });
   
-  const token = req.cookies.token;
+  // Try to get token from multiple sources (for cross-site compatibility)
+  let token = req.cookies.token; // First try cookie (same-site)
+  
+  if (!token && req.headers.authorization) {
+    // Try Authorization header (cross-site)
+    const authHeader = req.headers.authorization;
+    if (authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7);
+      console.log("Token found in Authorization header");
+    }
+  }
   
   if (!token) {
-    console.log("Verification failed: No token in cookies");
+    console.log("Verification failed: No token in cookies or Authorization header");
     return res.json({ status: false });
   }
   
