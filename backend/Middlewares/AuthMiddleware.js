@@ -4,11 +4,16 @@ import jwt from "jsonwebtoken"
 dotenv.config();
 
 export const userVerification = (req, res) => {
-  const token = req.cookies.token;
-  
-  // Log for debugging (remove in production if needed)
-  console.log("Verification request - Cookie present:", !!token);
+  // Enhanced debugging
+  console.log("verify cookies:", req.cookies);
   console.log("Verification request - Origin:", req.headers.origin);
+  console.log("Verification request - Headers:", {
+    cookie: req.headers.cookie,
+    origin: req.headers.origin,
+    referer: req.headers.referer
+  });
+  
+  const token = req.cookies.token;
   
   if (!token) {
     console.log("Verification failed: No token in cookies");

@@ -31,27 +31,39 @@ if (missingVars.length > 0) {
   process.exit(1);
 }
 
+// Log environment for debugging
+console.log("🔧 Environment:", {
+  NODE_ENV: process.env.NODE_ENV,
+  RENDER: process.env.RENDER,
+  isProd: process.env.NODE_ENV === "production" || !!process.env.RENDER
+});
+
 const app = express();
 
 /* ===================== CORS (SIMPLE & RELIABLE) ===================== */
 // Allow our Netlify app and localhost, echo others, and include credentials.
 const allowedOrigins = [
   /\.netlify\.app$/,
-  "https://zerodha-272.netlify.app",
-  "https://dashboard-272.netlify.app",
+  process.env.FRONTEND_URL || "https://zerodha-os.netlify.app",
+  process.env.DASHBOARD_URL || "https://dashboard-os.netlify.app",
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:3000",
 ];
 
+console.log("🌐 CORS allowed origins:", allowedOrigins);
+
 app.use(
   cors({
     origin: (origin, callback) => {
+      console.log("🔍 CORS check for origin:", origin);
       if (!origin) return callback(null, true);
       if (allowedOrigins.some((o) => (o instanceof RegExp ? o.test(origin) : o === origin))) {
+        console.log("✅ CORS allowed for:", origin);
         return callback(null, true);
       }
       // fallback: allow for now; tighten if needed
+      console.log("⚠️  CORS fallback allowed for:", origin);
       return callback(null, true);
     },
     credentials: true,

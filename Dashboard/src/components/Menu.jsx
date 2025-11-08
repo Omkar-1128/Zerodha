@@ -38,10 +38,8 @@ function Menu() {
   useEffect(() => {
     const verifyCookie = async () => {
       try {
-        // Small delay to allow cookie to be processed
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        
         console.log("🔍 Verifying authentication...");
+        console.log("🔍 API Base URL:", API_BASE_URL);
         
         const { data } = await axios.post(
           `${API_BASE_URL}/verify`,
@@ -65,13 +63,13 @@ function Menu() {
           console.error("❌ Verification failed - no valid session");
           setIsVerifying(false);
           removeCookie("token");
-          window.location.href = "https://zerodha-272.netlify.app/Login";
+          window.location.href = "https://zerodha-os.netlify.app/Login";
         }
       } catch (error) {
         console.error("❌ Verification error:", error.response?.data || error.message);
         setIsVerifying(false);
         removeCookie("token");
-        window.location.href = "https://zerodha-272.netlify.app/Login";
+        window.location.href = "https://zerodha-os.netlify.app/Login";
       }
     };
     verifyCookie();
@@ -96,7 +94,7 @@ function Menu() {
 
   const Logout = () => {
     removeCookie("token");
-    window.location.href = "https://zerodha-272.netlify.app/Register";
+    window.location.href = "https://zerodha-os.netlify.app/Register";
   };
 
   const pillClass = (idx) => `menu-pill ${selectedMenu === idx ? "is-active" : ""}`;

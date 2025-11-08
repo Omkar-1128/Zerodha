@@ -78,7 +78,7 @@ export default function LoginForm() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "https://dashboard-272.netlify.app";
+          window.location.href = "https://dashboard-os.netlify.app";
           // navigate("/Home");
         }, 1000);
       } else {
