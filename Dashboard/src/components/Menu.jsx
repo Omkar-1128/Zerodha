@@ -39,7 +39,7 @@ function Menu() {
     const verifyCookie = async () => {
       try {
         // Small delay to allow cookie to be processed
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 3000));
         
         console.log("🔍 Verifying authentication...");
         
