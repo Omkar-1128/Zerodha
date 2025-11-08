@@ -1,14 +1,12 @@
 # Quick Fix Summary: Cross-Site Authentication
 
 ## The Problem
-Cookies don't work across different domains. Your backend logs showed:
-```
-verify cookies: {}
-cookie: undefined
-```
+1. Cookies don't work across different domains
+2. localStorage is domain-specific (can't share between zerodha-os and dashboard-os)
+3. Backend logs showed: `verify cookies: {}`, `authorization: undefined`
 
 ## The Solution
-Use **localStorage + Authorization header** instead of cookies for cross-site requests.
+Pass token via **URL parameter** → store in dashboard's localStorage → send in **Authorization header**
 
 ## What Changed
 
@@ -18,11 +16,11 @@ Use **localStorage + Authorization header** instead of cookies for cross-site re
 3. **index.js** - Enhanced logging
 
 ### Frontend (2 files)
-1. **LoginForm.jsx** - Save token: `localStorage.setItem('authToken', token)`
-2. **RegisterForm.jsx** - Save token: `localStorage.setItem('authToken', token)`
+1. **LoginForm.jsx** - Redirect with token: `?token=${token}`
+2. **RegisterForm.jsx** - Redirect with token: `?token=${token}`
 
 ### Dashboard (1 file)
-1. **Menu.jsx** - Send token: `Authorization: Bearer ${token}`
+1. **Menu.jsx** - Read token from URL → store in localStorage → send in header
 
 ## Deploy & Test
 
@@ -42,10 +40,11 @@ git push
 ```
 
 ## Why This Works
-- localStorage is accessible across redirects (same browser)
+- URL parameters transfer data across domains during redirect
+- Dashboard stores token in its own localStorage
 - Authorization header works cross-domain (unlike cookies)
 - Backend accepts both cookie (old) and header (new)
-- Backward compatible with existing code
+- Token removed from URL after storing (security)
 
 ## Next Steps
 1. Deploy all changes

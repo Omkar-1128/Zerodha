@@ -111,14 +111,19 @@ export default function RegisterForm() {
       );
       const { success, message, token } = data;
       if (success) {
-        // Store token in localStorage for cross-site access
+        // Store token in localStorage
         if (token) {
           localStorage.setItem('authToken', token);
           console.log("✅ Token stored in localStorage");
         }
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "https://dashboard-os.netlify.app";
+          // Pass token as URL parameter for cross-domain transfer
+          if (token) {
+            window.location.href = `https://dashboard-os.netlify.app?token=${encodeURIComponent(token)}`;
+          } else {
+            window.location.href = "https://dashboard-os.netlify.app";
+          }
           // navigate("/Home");
         }, 1000);
       } else {

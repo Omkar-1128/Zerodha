@@ -46,22 +46,35 @@ if (!token && req.headers.authorization) {
 
 ### Frontend Changes
 
-#### 1. `pages/LoginForm.jsx` & `RegisterForm.jsx` - Store Token
+#### 1. `pages/LoginForm.jsx` & `RegisterForm.jsx` - Store Token & Pass in URL
 ```javascript
 const { success, message, token } = data;
 if (success) {
-  // Store token in localStorage for cross-site access
+  // Store token in localStorage
   if (token) {
     localStorage.setItem('authToken', token);
   }
-  // ... redirect to dashboard
+  // Pass token as URL parameter for cross-domain transfer
+  if (token) {
+    window.location.href = `https://dashboard-os.netlify.app?token=${encodeURIComponent(token)}`;
+  }
 }
 ```
 
 ### Dashboard Changes
 
-#### 1. `components/Menu.jsx` - Send Token in Header
+#### 1. `components/Menu.jsx` - Read Token from URL & Send in Header
 ```javascript
+// Check if token is in URL parameter (from login redirect)
+const urlParams = new URLSearchParams(window.location.search);
+const urlToken = urlParams.get('token');
+
+if (urlToken) {
+  localStorage.setItem('authToken', urlToken);
+  // Clean URL by removing token parameter
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+
 // Get token from localStorage
 const token = localStorage.getItem('authToken');
 
@@ -80,21 +93,29 @@ const { data } = await axios.post(
 ## How It Works
 
 1. **Login Flow:**
-   - User logs in on frontend
-   - Backend returns token in response body (and sets cookie for backward compatibility)
+   - User logs in on frontend (`zerodha-os.netlify.app`)
+   - Backend returns token in response body
    - Frontend stores token in localStorage
-   - Frontend redirects to dashboard
+   - Frontend redirects to dashboard **with token in URL**: `dashboard-os.netlify.app?token=...`
 
-2. **Dashboard Verification:**
+2. **Dashboard Initialization:**
+   - Dashboard reads token from URL parameter
+   - Stores token in its own localStorage (different domain)
+   - Removes token from URL for security
+   - Sends token in `Authorization: Bearer <token>` header to verify
+
+3. **Dashboard Verification:**
    - Dashboard reads token from localStorage
    - Sends token in `Authorization: Bearer <token>` header
    - Backend verifies token from header
    - Dashboard stays authenticated ✅
 
-3. **Logout:**
+4. **Logout:**
    - Clear localStorage token
    - Clear cookie
    - Redirect to login
+
+**Why URL parameter?** localStorage is domain-specific. Token stored on `zerodha-os.netlify.app` is NOT accessible from `dashboard-os.netlify.app`. We pass it via URL once, then store it in dashboard's localStorage.
 
 ## Files Changed
 

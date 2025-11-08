@@ -41,12 +41,23 @@ function Menu() {
         console.log("🔍 Verifying authentication...");
         console.log("🔍 API Base URL:", API_BASE_URL);
         
-        // Get token from localStorage (cross-site compatible)
+        // Check if token is in URL parameter (from login redirect)
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlToken = urlParams.get('token');
+        
+        if (urlToken) {
+          console.log("🔍 Token found in URL, storing in localStorage");
+          localStorage.setItem('authToken', urlToken);
+          // Clean URL by removing token parameter
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        // Get token from localStorage
         const token = localStorage.getItem('authToken');
         console.log("🔍 Token from localStorage:", token ? "Present" : "Missing");
         
         if (!token) {
-          console.error("❌ No token found in localStorage");
+          console.error("❌ No token found in localStorage or URL");
           setIsVerifying(false);
           removeCookie("token");
           window.location.href = "https://zerodha-os.netlify.app/Login";
