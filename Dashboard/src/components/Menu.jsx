@@ -36,18 +36,13 @@ function Menu() {
   }, [location.pathname]);
 
   useEffect(() => {
-    const verifyCookie = async (retryCount = 0) => {
+    const verifyCookie = async () => {
       try {
-        // Delay on first attempt to allow cross-site cookie to be set after redirect
-        // Cross-site cookies need time to be processed by the browser
-        if (retryCount === 0) {
-          await new Promise(resolve => setTimeout(resolve, 2000));
-        }
+        // Small delay to allow cookie to be processed
+        await new Promise(resolve => setTimeout(resolve, 300));
         
-        console.log(`🔍 Verification attempt ${retryCount + 1}...`);
+        console.log("🔍 Verifying authentication...");
         
-        // Always try to verify - cookie is httpOnly so we can't check it directly
-        // It will be sent automatically with withCredentials: true
         const { data } = await axios.post(
           `${API_BASE_URL}/verify`,
           {},
@@ -67,31 +62,16 @@ function Menu() {
           setUsername(user);
           setIsVerifying(false);
         } else {
-          // Verification failed - if first attempt, retry once more
-          if (retryCount === 0) {
-            console.warn("⚠️ Verification failed, retrying in 2 seconds...");
-            setTimeout(() => verifyCookie(1), 2000);
-          } else {
-            // Second attempt also failed - redirect to login
-            console.error("❌ Verification failed after retry - redirecting to login");
-            setIsVerifying(false);
-            removeCookie("token");
-            window.location.href = "https://zerodha-272.netlify.app/Login";
-          }
-        }
-      } catch (error) {
-        // Network error - if first attempt, retry once more
-        console.error(`❌ Verification error (attempt ${retryCount + 1}):`, error.response?.data || error.message);
-        if (retryCount === 0) {
-          console.warn("⚠️ Retrying verification in 2 seconds...");
-          setTimeout(() => verifyCookie(1), 2000);
-        } else {
-          // Second attempt also failed - redirect to login
-          console.error("❌ Verification failed after retry - redirecting to login");
+          console.error("❌ Verification failed - no valid session");
           setIsVerifying(false);
           removeCookie("token");
           window.location.href = "https://zerodha-272.netlify.app/Login";
         }
+      } catch (error) {
+        console.error("❌ Verification error:", error.response?.data || error.message);
+        setIsVerifying(false);
+        removeCookie("token");
+        window.location.href = "https://zerodha-272.netlify.app/Login";
       }
     };
     verifyCookie();
