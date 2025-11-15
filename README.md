@@ -30,9 +30,13 @@ Users can view live stock prices, buy/sell stocks, and track holdings with chart
 
 ## 📁 Project Structure
 Zerodha/
+
 │── frontend/ # Landing page, login/signup
+
 │── dashboard/ # Main trading dashboard
+
 │── backend/ # APIs + MongoDB
+
 └── package.json # Workspaces (concurrently)
 
 
